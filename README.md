@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# About
 
 This is my portfolio website built on React using TypeScript, Redux and Tailwind CSS.
 
