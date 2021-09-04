@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.body {
+    @apply font-testing subpixel-antialiased;
+}
+  
+.thecontainer {
+    @apply flex max-w-full bg-vscode_bg;
+}
+  
+.textContainer {
+    @apply max-w-full bg-vscode_bg h-auto text-left;
+}
+  
+.hoverTextContainer {
+    @apply flex container max-w-full bg-vscode_bg h-auto;
+}
+  
+.headerFont {
+    @apply font-testing font-bold subpixel-antialiased text-xl;
+}
+  
+.header {
+    @apply fixed flex container max-w-full h-9 space-x-24 bg-gray-500 bg-opacity-65  place-items-center justify-center;
+}
+
+@layer components {
+    .link {
+        @apply cursor-pointer hover:underline;
+    }
+    .button {
+        @apply p-2 text-xs bg-gradient-to-b from-indigo-200 to-indigo-400 border border-indigo-300 rounded-lg focus:outline-none focus:ring-indigo-500 focus:from-indigo-500;
+    }
+}
