@@ -1,4 +1,5 @@
 import React from 'react'
+import Env from '../env.json';
 
 function Theme_ReactJSX() {
     const blanks = (size:number) => {
@@ -6,45 +7,73 @@ function Theme_ReactJSX() {
     }
     interface ImportProps {
         starAs?:boolean
-        whole?:string[],
-        destructured?:string[],
-        source:string
+        whole?:{name:string,url?:string}[],
+        destructured?:{name:string,url?:string}[],
+        source:{name:string,url?:string}
     }
     const _Import: React.FC<ImportProps> = ({starAs,whole,destructured,source}) => {
-        //const _whole = f_whole(whole);
-        //const _destructured = f_destructured(destructured);
         return (
-            <div className="textContainer">
-                <span className="body text-vscode_mauve-light">import </span>
-                {starAs && <span className="body text-vscode_var-light"> * </span>}
-                {starAs && <span className="body text-vscode_mauve-light"> as </span>}
-                {whole && whole.map((value:string,index:number)=>{
+            <div>
+            <span className="body text-vscode_mauve-light">import </span>
+            {starAs && <span className="body text-vscode_var-light"> * </span>}
+            {starAs && <span className="body text-vscode_mauve-light"> as </span>}
+            {whole && whole.map((value,index:number)=>{
+                if(value.url){
+                    return(
+                    <a href={value.url} target="_blank" rel="noopener noreferrer">
+                    <span key={index} className="body text-vscode_var-light rounded hover:bg-gray-600">{value.name}</span>
+                    <span className="body text-white">{destructured ? (destructured.length>0 ? ', ':' '):('')}</span>
+                    </a>
+                    )
+                }else{
                     return(
                     <>
-                    <span key={index} className="body text-vscode_var-light">{value}</span>
+                    <span key={index} className="body text-vscode_var-light">{value.name}</span>
                     <span className="body text-white">{destructured ? (destructured.length>0 ? ', ':' '):('')}</span>
                     </>
-                )})}
-                {destructured && destructured.length>0 && <span className="body text-white">&#123; </span>}
-                {destructured && destructured.map((value:string,index:number)=>{
+                    )
+                }
+            })}
+            {destructured && destructured.length>0 && <span className="body text-white">&#123; </span>}
+            {destructured && destructured.map((value,index:number)=>{
+                if(value.url){
+                    return(
+                        <a href={value.url} target="_blank" rel="noopener noreferrer">
+                        <span key={index} className="body rounded hover:bg-gray-600 text-vscode_var-light">{value.name}</span>
+                        <span className="body text-white">{index>destructured.length-2 ? ' ':', '}</span>
+                        </a>
+                    )
+                }else{
                     return(
                         <>
-                        <span key={index} className="body text-vscode_var-light">{value}</span>
+                        <span key={index} className="body text-vscode_var-light">{value.name}</span>
                         <span className="body text-white">{index>destructured.length-2 ? ' ':', '}</span>
                         </>
                     )
-                })}
-                {destructured && destructured.length>0 && <span className="body text-white">&#125;</span>}
-                <span className="body text-vscode_mauve-light"> from </span>
-                <span className="body text-vscode_string-dark">'{source}'</span>
-                <span className="body text-white">;</span>
+                }
+                
+            })}
+            {destructured && destructured.length>0 && <span className="body text-white">&#125;</span>}
+            <span className="body text-vscode_mauve-light"> from </span>
+            {source.url ? (
+                <a href={source.url} target="_blank" rel="noopener noreferrer">
+                <span className="body text-vscode_string-dark rounded hover:bg-gray-600">'{source.name}'</span>
+                </a>
+            ):(
+                <span className="body text-vscode_string-dark">'{source.name}'</span>
+            )}
+            <span className="body text-white">;</span>
             </div>
         )
     }
+
     return (
     <div className="bg-vscode_bg max-w-full items-center">
         <div className="w-6/12 mx-auto border-2 p-4 rounded-lg">
-            <_Import starAs={true} whole={['BSc_in_Economics ']} source={'University-of-Reims-Champagne-Ardenne'}/>
+            <_Import starAs whole={[{name:'BSc_in_Economics',url:Env.url_BSc_EG}]} source={{name:'University-of-Reims-Champagne-Ardenne',url:Env.url_URCA}}/>
+            <_Import whole={[{name:'Data_Analysis',url:Env.url_data_analysis}]} destructured={[{name:'R',url:Env.url_R},{name:'Python',url:Env.url_Python},{name:'SPSS',url:Env.url_SPSS}]} source={{name:'Major/Academic-Career'}}/>
+            <_Import destructured={[{name:'Full-stack_Web&Mobile'},{name:'Video_Game_Development'}]} source={{name:'Career-as-a-developer'}}/>
+            <_Import destructured={[{name:'JavaScript'},{name:'TypeScript'}]} source={{name:'ECMAScript/2020'}}/>
             <div className="textContainer">
                 <br/>
                 <span className="body text-blue-400">const </span>

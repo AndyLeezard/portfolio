@@ -12,8 +12,7 @@ const Home = () => {
         <div className="thecontainer flex-col h-auto space-x-0 place-items-center p-4 text-left">
             <img className="w-32 h-32 rounded-lg mb-4" src="images/profile.jpg" alt="" width="384" height="512" />
             <h4 className="headerFont text-white">Andy Lee</h4>
-            <h4 className="headerFont text-vscode_comment-light">{decorateAsComment("Full-stack Web developper")}</h4>
-            <h4 className="headerFont text-vscode_comment-light">{decorateAsComment("Independant mobile app / game developper")}</h4>
+            <h4 className="headerFont text-vscode_comment-light">{decorateAsComment("Freelance full-stack web/mobile app developper")}</h4>
             <h4 className="headerFont text-vscode_comment-light">{decorateAsComment("BSc in Economics - Majored in Economic Analysis using big data")}</h4>
         </div>
         <div className="bg-gray-50">
