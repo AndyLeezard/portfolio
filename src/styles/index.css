@@ -23,7 +23,7 @@
 }
   
 .header {
-    @apply fixed flex container max-w-full h-9 space-x-24 bg-gray-500 bg-opacity-65  place-items-center justify-center;
+    @apply fixed flex container max-w-full h-9 space-x-24 bg-gray-500 bg-opacity-60  place-items-center justify-center;
 }
 
 @layer components {
