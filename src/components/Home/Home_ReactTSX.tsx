@@ -1,8 +1,10 @@
 import React from 'react'
 import Env from '../../env.json';
+import { useHistory } from 'react-router-dom';
 import { React_ImportProps, react_arrow, react_arrow_fin } from '../../global';
 
 const Home_ReactTSX: React.FC = () => {
+    const history = useHistory();
     const blanks = (size:number) => {
         return String.fromCharCode(160).repeat(size);
     }
@@ -65,7 +67,7 @@ const Home_ReactTSX: React.FC = () => {
     return (
     <div className="bg-vscode_bg max-w-full items-center">
         <div className="w-6/12 mx-auto border-2 p-4 rounded-lg">
-            <p className="body text-vscode_comment-light">{"Current section : PORTFOLIO".doubleSlash()}</p>
+            <p className="body text-vscode_comment-light">{"Current section : HOME".doubleSlash()}</p>
             <p className="body text-vscode_comment-light">{"Current theme : React with TypeScript".doubleSlash()}</p>
             <ImportComponent starAs whole={[{name:'BSc_in_Economics',url:Env.url_BSc_EG}]} source={{name:'University-of-Reims-Champagne-Ardenne',url:Env.url_URCA}}/>
             <ImportComponent whole={[{name:'Data_Analysis',url:Env.url_data_analysis}]} destructured={[{name:'R',url:Env.url_R},{name:'Python',url:Env.url_Python},{name:'SPSS',url:Env.url_SPSS}]} source={{name:'Career/Academic/Major'}}/>
@@ -73,14 +75,12 @@ const Home_ReactTSX: React.FC = () => {
             {react_arrow('Home')}
             <div className="hoverTextContainer">
                 <span>{blanks(12)}</span>
-                <a href="https://amazone-demo.vercel.app/" target="_blank" rel="noopener noreferrer">
-                <div className="rounded hover:bg-gray-600">
+                <div className="rounded hover:bg-gray-600 link" onClick={()=>history.push('/about')}>
                     <span className="body text-gray-200">&#60;</span>
-                    <span className="body text-vscode_green">E-Commerce</span>
+                    <span className="body text-vscode_green">About_Me</span>
                     <span className="body text-gray-200">&#47;</span>
                     <span className="body text-gray-200">&#62;</span>
                 </div>
-                </a>
             </div>
             <div className="hoverTextContainer">
                 <span>{blanks(12)}</span>

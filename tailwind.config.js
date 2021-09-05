@@ -24,6 +24,7 @@ module.exports = {
         },
         minWidth: {
           8: '32px',
+          12: '48px',
         },
         colors: {
           vscode_bg: {

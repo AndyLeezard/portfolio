@@ -25,6 +25,10 @@ const App = () => {
   return (
     <Router>
       <Switch>
+        <Route path='/about'>
+          <Header/>
+          <h4>It worked</h4>
+        </Route>
         <Route path='/'>
           <Header/>
           <Home/>
