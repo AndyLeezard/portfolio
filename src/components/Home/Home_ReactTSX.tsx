@@ -1,13 +1,10 @@
 import React from 'react'
 import Env from '../../env.json';
 import { useHistory } from 'react-router-dom';
-import { React_ImportProps, react_arrow, react_arrow_fin } from '../../global';
+import { React_ImportProps, react_arrow, react_arrow_fin, react_component } from '../../global';
 
 const Home_ReactTSX: React.FC = () => {
     const history = useHistory();
-    const blanks = (size:number) => {
-        return String.fromCharCode(160).repeat(size);
-    }
     const ImportComponent: React.FC<React_ImportProps> = ({starAs,whole,destructured,source}) => {
         return (
             <div>
@@ -19,7 +16,7 @@ const Home_ReactTSX: React.FC = () => {
                     return(
                     <a href={value.url} target="_blank" rel="noopener noreferrer">
                     <span key={index} className="body text-vscode_var-light rounded hover:bg-gray-600">{value.name}</span>
-                    <span className="body text-white">{destructured ? (destructured.length>0 ? ', ':' '):('')}</span>
+                    <span className="body text-white">{destructured ? (destructured.length>0 ? ', ':' '):(index<whole.length-1 ? ', ':'')}</span>
                     </a>
                     )
                 }else{
@@ -73,42 +70,8 @@ const Home_ReactTSX: React.FC = () => {
             <ImportComponent whole={[{name:'Data_Analysis',url:Env.url_data_analysis}]} destructured={[{name:'R',url:Env.url_R},{name:'Python',url:Env.url_Python},{name:'SPSS',url:Env.url_SPSS}]} source={{name:'Career/Academic/Major'}}/>
             <ImportComponent whole={[{name:'Full-stack'}]} destructured={[{name:'Web'},{name:'Mobile'}]} source={{name:'Career/Professional/Dev'}}/>
             {react_arrow('Home')}
-            <div className="hoverTextContainer">
-                <span>{blanks(12)}</span>
-                <div className="rounded hover:bg-gray-600 link" onClick={()=>history.push('/about')}>
-                    <span className="body text-gray-200">&#60;</span>
-                    <span className="body text-vscode_green">About_Me</span>
-                    <span className="body text-gray-200">&#47;</span>
-                    <span className="body text-gray-200">&#62;</span>
-                </div>
-            </div>
-            <div className="hoverTextContainer">
-                <span>{blanks(12)}</span>
-                <div className="rounded hover:bg-gray-600">
-                    <span className="body text-gray-200">&#60;</span>
-                    <span className="body text-vscode_green">Trading simulator</span>
-                    <span className="body text-gray-200">&#47;</span>
-                    <span className="body text-gray-200">&#62;</span>
-                </div>
-            </div>
-            <div className="hoverTextContainer">
-                <span>{blanks(12)}</span>
-                <div className="rounded hover:bg-gray-600">
-                    <span className="body text-gray-200">&#60;</span>
-                    <span className="body text-vscode_green">Social Media</span>
-                    <span className="body text-gray-200">&#47;</span>
-                    <span className="body text-gray-200">&#62;</span>
-                </div>
-            </div>
-            <div className="hoverTextContainer">
-                <span>{blanks(12)}</span>
-                <div className="rounded hover:bg-gray-600">
-                    <span className="body text-gray-200">&#60;</span>
-                    <span className="font-testing subpixel-antialiased text-vscode_green">Messenger App</span>
-                    <span className="body text-gray-200">&#47;</span>
-                    <span className="body text-gray-200">&#62;</span>
-                </div>
-            </div>
+            {react_component("About_Me",()=>history.push('/about'))}
+            {react_component("My_Works",()=>history.push('/about'))}
             {react_arrow_fin('Home')}
         </div>
     </div>
