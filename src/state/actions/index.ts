@@ -1,17 +1,9 @@
 import { ActionType } from "../action-types";
+import { langs } from "../../global";
 
-interface DepositAction {
-    type: ActionType.DEPOSIT
-    payload: number
+interface UpdateAction {
+    type: ActionType.UPDATE,
+    payload: langs
 }
 
-interface WithdrawAction {
-    type: ActionType.WITHDRAW
-    payload: number
-}
-
-interface BackruptAction {
-    type: ActionType.BANKRUPT
-}
-
-export type Action = DepositAction | WithdrawAction | BackruptAction
+export type Action = UpdateAction // | | |

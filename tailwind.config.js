@@ -22,6 +22,9 @@ module.exports = {
           auto: 'auto',
           '-10': '-10',
         },
+        minWidth: {
+          8: '32px',
+        },
         colors: {
           vscode_bg: {
             light: "#ffffff",
@@ -46,6 +49,10 @@ module.exports = {
           vscode_comment: {
             light: "#6A9955",
             dark: "#6A9955"
+          },
+          vscode_function: {
+            light: "#DCDCAA",
+            dark: "#DCDCAA"
           }
         }
       }

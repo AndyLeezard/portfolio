@@ -6,6 +6,26 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from "react-redux";
 import { store } from './state/store';
 
+declare global {
+  enum langs {
+    REACT='react',
+    PYTHON='python',
+    CSHARP='csharp',
+    GO='go',
+    R='r'
+  }
+}
+
+String.prototype.doubleSlash = function () {
+      return "// "+this;
+};
+String.prototype.commentBlock = function () {
+  return "/* "+this+" */";
+};
+String.prototype.indentBy = function (size:number) {
+  return String.fromCharCode(160).repeat(size) + this;
+};
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

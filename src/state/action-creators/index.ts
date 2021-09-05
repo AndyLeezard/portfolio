@@ -1,29 +1,13 @@
 import { ActionType } from "../action-types"
 import { Dispatch } from "redux"
 import { Action } from "../actions/index"
+import { langs } from '../../global';
 
-export const depositMoney = (amount: number) => {
+export const updateLang = (input: langs) => {
     return (dispatch: Dispatch<Action>) => {
         dispatch({
-            type: ActionType.DEPOSIT,
-            payload: amount
-        })
-    }
-}
-
-export const withdrawMoney = (amount: number) => {
-    return (dispatch: Dispatch<Action>) => {
-        dispatch({
-            type: ActionType.WITHDRAW,
-            payload: amount
-        })
-    }
-}
-
-export const bankrupt = () => {
-    return (dispatch: Dispatch<Action>) => {
-        dispatch({
-            type: ActionType.BANKRUPT,
+            type: ActionType.UPDATE,
+            payload: input
         })
     }
 }

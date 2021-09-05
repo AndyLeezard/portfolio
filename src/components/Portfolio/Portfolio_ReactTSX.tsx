@@ -1,17 +1,12 @@
 import React from 'react'
-import Env from '../env.json';
+import Env from '../../env.json';
+import { React_ImportProps, react_arrow, react_arrow_fin } from '../../global';
 
-function Theme_ReactJSX() {
+const Portfolio_ReactTSX: React.FC = () => {
     const blanks = (size:number) => {
         return String.fromCharCode(160).repeat(size);
     }
-    interface ImportProps {
-        starAs?:boolean
-        whole?:{name:string,url?:string}[],
-        destructured?:{name:string,url?:string}[],
-        source:{name:string,url?:string}
-    }
-    const _Import: React.FC<ImportProps> = ({starAs,whole,destructured,source}) => {
+    const ImportComponent: React.FC<React_ImportProps> = ({starAs,whole,destructured,source}) => {
         return (
             <div>
             <span className="body text-vscode_mauve-light">import </span>
@@ -29,7 +24,7 @@ function Theme_ReactJSX() {
                     return(
                     <>
                     <span key={index} className="body text-vscode_var-light">{value.name}</span>
-                    <span className="body text-white">{destructured ? (destructured.length>0 ? ', ':' '):('')}</span>
+                    <span className="body text-white">{destructured ? (destructured.length>0 ? ', ':' '):(index<whole.length-1 ? ', ':'')}</span>
                     </>
                     )
                 }
@@ -70,18 +65,18 @@ function Theme_ReactJSX() {
     return (
     <div className="bg-vscode_bg max-w-full items-center">
         <div className="w-6/12 mx-auto border-2 p-4 rounded-lg">
-            <_Import starAs whole={[{name:'BSc_in_Economics',url:Env.url_BSc_EG}]} source={{name:'University-of-Reims-Champagne-Ardenne',url:Env.url_URCA}}/>
-            <_Import whole={[{name:'Data_Analysis',url:Env.url_data_analysis}]} destructured={[{name:'R',url:Env.url_R},{name:'Python',url:Env.url_Python},{name:'SPSS',url:Env.url_SPSS}]} source={{name:'Major/Academic-Career'}}/>
-            <_Import destructured={[{name:'Full-stack_Web&Mobile'},{name:'Video_Game_Development'}]} source={{name:'Career-as-a-developer'}}/>
-            <_Import destructured={[{name:'JavaScript'},{name:'TypeScript'}]} source={{name:'ECMAScript/2020'}}/>
-            <div className="textContainer">
-                <br/>
-                <span className="body text-blue-400">const </span>
-                <span className="body text-yellow-200">Portfolio</span>
-                <span className="body text-white"> = () </span>
-                <span className="body text-blue-400">=&#62; </span>
-                <span className="body text-white">&#123;</span>
-            </div>
+            <p className="body text-vscode_comment-light">{"Current section : PORTFOLIO".doubleSlash()}</p>
+            <p className="body text-vscode_comment-light">{"Current theme : React with TypeScript".doubleSlash()}</p>
+            <ImportComponent starAs whole={[{name:'BSc_in_Economics',url:Env.url_BSc_EG}]} source={{name:'University-of-Reims-Champagne-Ardenne',url:Env.url_URCA}}/>
+            <ImportComponent whole={[{name:'Data_Analysis',url:Env.url_data_analysis}]} destructured={[{name:'R',url:Env.url_R},{name:'Python',url:Env.url_Python},{name:'SPSS',url:Env.url_SPSS}]} source={{name:'Career/Academic/Major'}}/>
+            <ImportComponent whole={[{name:'Full-stack'}]} destructured={[{name:'Web'},{name:'Mobile'}]} source={{name:'Career/Professional/Dev'}}/>
+            <ImportComponent destructured={[{name:'HTML'},{name:'CSS'},{name:'JavaScript'},{name:'TypeScript'}]} source={{name:'Web/ECMAScript/2020'}}/>
+            <ImportComponent destructured={[{name:'React'},{name:'TailwinCSS'},{name:'Next_JS'},{name:'Redux'}]} source={{name:'Web/Frameworks'}}/>
+            <ImportComponent whole={[{name:'Node_JS'},{name:'Go'}]} destructured={[{name:'Express'},{name:'Cloud Functions'}]} source={{name:'Web/Backend'}}/>
+            <ImportComponent destructured={[{name:'Expo'},{name:'React Native'}]} source={{name:'Cross-platform/Mobile/Frameworks'}}/>
+            <ImportComponent destructured={[{name:'Photoshop'},{name:'Lightroom'}]} source={{name:'Graphics/Adobe'}}/>
+            <ImportComponent whole={[{name:'SQL'},{name:'Firebase'}]} source={{name:'Database'}}/>
+            {react_arrow('Portfolio')}
             <div className="textContainer">
                 <span>{blanks(4)}</span>
                 <span className="body text-pink-500">return </span>
@@ -131,24 +126,10 @@ function Theme_ReactJSX() {
                     <span className="body text-gray-200">&#62;</span>
                 </div>
             </div>
-            <div className="textContainer">
-                <span className="body text-gray-200">{blanks(4)}&#60;</span>
-                <span className="body text-gray-200">&#47;</span>
-                <span className="body text-blue-400">div</span>
-                <span className="body text-gray-200">&#62;</span>
-            </div>
-            <div className="textContainer">
-                <span className="body text-white">&#41;</span>
-                <span className="body text-white">&#125;</span>
-            </div>
-            <div className="textContainer">
-                <br/>
-                <span className="body text-pink-500">export default </span>
-                <span className="body text-yellow-200">Portfolio</span>
-            </div>
+            {react_arrow_fin('Portfolio')}
         </div>
     </div>
     )
 }
 
-export default Theme_ReactJSX
+export default Portfolio_ReactTSX
