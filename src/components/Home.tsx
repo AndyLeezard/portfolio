@@ -49,11 +49,11 @@ const Home: React.FC = () => {
         <div className="flex flex-col h-auto place-items-center pt-12 px-4 mb-1">
             <img className="w-32 h-32 rounded-lg mb-4" src="images/profile.jpg" alt="Andy Lee" title="profile picture"/>
             <h4 className="headerFont text-white">Andy Lee</h4>
-            <h4 className="frontFont text-vscode_comment">{"Freelance full-stack web/mobile app developper".commentBlock()}</h4>
-            <h4 className="frontFont text-vscode_comment">{"BSc in Economics - Majored in Economic Analysis using big data".commentBlock()}</h4>
+            <h4 className="frontFont text-vscode_comment">{"Full-stack web/mobile app developper".commentBlock()}</h4>
+            <h4 className="frontFont text-vscode_comment">{"BSc in Economics - Majored in data analysis".commentBlock()}</h4>
             <h4 className="frontFont text-vscode_comment">{`${state.lang}`.commentBlock()}</h4>
         </div>
-        <div className="bg-vscode_bg-dark w-11/12 md:w-10/12 lg:w-6/12 mx-auto border-2 p-4 rounded-lg flex flex-row justify-center space-x-4 mb-2">
+        <div className="bg-vscode_bg-dark w-11/12 lg:w-8/12 mx-auto border-2 p-4 rounded-lg flex flex-row justify-center space-x-4 mb-2">
             <LanguageComponent content={[{alt:'React',imgsrc:'/svgs/react.svg'},{alt:'Node.js',imgsrc:'/svgs/nodejs.svg'},{alt:'JavaScript&TypeScript',imgsrc:'/pngs/jsts.png'},{alt:'Next.JS',imgsrc:'/svgs/nextjs.svg'},{alt:'Redux',imgsrc:'/svgs/redux.svg'}]} id={langs.REACT}/>
             <LanguageComponent content={[{alt:'C#',imgsrc:'/svgs/csharp.svg'},{alt:'.NetCore',imgsrc:'/svgs/netcore.svg'},{alt:'Blazor',imgsrc:'/svgs/blazor.svg'},{alt:'Unity',imgsrc:'/svgs/unity.svg'}]} id={langs.CSHARP}/>
             <LanguageComponent content={[{alt:'Python',imgsrc:'/svgs/python.svg'},{alt:'Django',imgsrc:'/svgs/django.svg'}]} id={langs.PYTHON}/>

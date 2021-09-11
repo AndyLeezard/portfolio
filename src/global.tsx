@@ -18,12 +18,12 @@ export interface Csharp_usingProps {
     source:string[]
 }
 
-const blanks = (size:number) => {
+export const blanks = (size:number) => {
     if(size<0){size=0;}
     return String.fromCharCode(160).repeat(size);
 }
 
-const br = (<div className="textContainer"><br/></div>);
+export const br = (<div className="textContainer"><br/></div>);
 
 export const importComponent = (input:React_ImportProps) => {
     return (
@@ -189,26 +189,32 @@ export const csharp_namespace = (name:string[]) => {
             </>
     )})
     return (
-        <div className="">
-            <br/>
-            <span className="body text-blue-400">namespace </span>
+        <>
+        <br/>
+        <div className="textContainer">
+            <span className="body text-blue-400">namespace{blanks(1)}</span>
             {item}
-            <br/>
-            <span className="body text-white"> &#123;</span>
         </div>
+        <p className="textContainer">
+            <span className="body text-white"> &#123;</span>
+        </p>
+        </>
     )
 }
 
 export const csharp_class = (name:string) => {
     return (
         <>
-            <br/>
+        <div className="textContainer">
             <span>{blanks(8)}</span>
-            <span className="body text-blue-400">public class </span>
-            <span className="body text-vscode_green">{name}</span>
+            <span className="body text-blue-400">public class</span>
+            <span className="body text-vscode_green">{blanks(1)+name}</span>
             <br/>
+        </div>
+        <p className="textContainer">
             <span>{blanks(8)}</span>
             <span className="body text-white">&#123;</span>
+        </p>
         </>
     )
 }
@@ -232,14 +238,14 @@ export const csharp_object = (obj_param:{_onClick?:any,indent?:number,scope?:str
                 <a className="rounded hover:bg-gray-600" href={value.url} target="_blank" rel="noopener noreferrer">
                 <span key={index} className="body text-vscode_var">{value.name}</span>
                 </a>
-                <span className="body text-white">{index<obj_param.obj.length-1 ? ', ':''}</span>
+                <span className="body text-white">{index<obj_param.obj.length-1 ? `,${blanks(1)}`:''}</span>
                 </>
             )
         }else{
             return (
                 <>
                 <span key={index} className="body text-vscode_var">{value.name}</span>
-                <span className="body text-white">{index<obj_param.obj.length-1 ? ', ':''}</span>
+                <span className="body text-white">{index<obj_param.obj.length-1 ? `,${blanks(1)}`:''}</span>
                 </>
             )
         }
@@ -248,18 +254,18 @@ export const csharp_object = (obj_param:{_onClick?:any,indent?:number,scope?:str
         <>
         {obj_param.scope && obj_param.scope.map((value,index:number)=>{
             return(
-                <span key={index} className="body text-blue-400">{value} </span>
+                <span key={index} className="body text-blue-400">{value+blanks(1)}</span>
             )
         })}
-        {obj_param.vartype && <span className="body text-blue-400">{obj_param.vartype}{(!obj_param.varIsArray) && ' '}</span>}
-        {obj_param.class && <span className="body text-vscode_green">{obj_param.class}{(!obj_param.varIsArray) && ' '}</span>}
-        {(obj_param.varIsArray !== undefined) && <span className="body text-white">{"[]".repeat(obj_param.varIsArray.length)} </span>}
+        {obj_param.vartype && <span className="body text-blue-400">{obj_param.vartype}{(!obj_param.varIsArray) && blanks(1)}</span>}
+        {obj_param.class && <span className="body text-vscode_green">{obj_param.class}{(!obj_param.varIsArray) && blanks(1)}</span>}
+        {(obj_param.varIsArray !== undefined) && <span className="body text-white">{"[]".repeat(obj_param.varIsArray.length)+blanks(1)}</span>}
         {item}
         {obj_param.update && (
             <>
-            <span className="body text-white"> {obj_param.update.operator} </span>
+            <span className="body text-white">{blanks(1)+obj_param.update.operator+blanks(1)}</span>
             {obj_param.update.scope && (
-                <span className="body text-blue-400">{obj_param.update.scope} </span>
+                <span className="body text-blue-400">{obj_param.update.scope+blanks(1)}</span>
             )}
             {(obj_param.update.class && !obj_param.update.var) && (
                 <>
@@ -275,7 +281,7 @@ export const csharp_object = (obj_param:{_onClick?:any,indent?:number,scope?:str
                 <span className="body text-vscode_var">{obj_param.update.var}</span>
                 {obj_param.update.extension && mapped(obj_param.update.extension)}
                 <span className="body text-white">.</span>
-                <br className="flex lg:hidden"/>
+                {/*<br className="flex lg:hidden"/>*/}
                 <span className="body text-vscode_function">{obj_param.update.class}</span>
                 {obj_param.update.parameter ? (
                     <>
@@ -297,10 +303,9 @@ export const csharp_object = (obj_param:{_onClick?:any,indent?:number,scope?:str
         </>
     )
     return (
-        <>
+        <div className="textContainer">
             {obj_param._onClick ? (
                 <>
-                <br/>
                 <span>{blanks(16 + _indent)}</span>
                 {typeof obj_param._onClick === "string" ? (
                     <a className="rounded hover:bg-gray-600" href={obj_param._onClick} target="_blank" rel="noopener noreferrer">
@@ -315,13 +320,12 @@ export const csharp_object = (obj_param:{_onClick?:any,indent?:number,scope?:str
                 </>
             ):(
                 <>
-                <br/>
                 <span>{blanks(16 + _indent)}</span>
                 {rendering}
                 <span className="body text-white">;</span>
                 </>
             )}
-        </>
+        </div>
     )
 }
 
@@ -331,10 +335,10 @@ export const csharp_func = (obj_param:{indent?:number,scope?:string[],class?:str
         <>
         {obj_param.scope && obj_param.scope.map((value,index:number)=>{
             return(
-                <span key={index} className="body text-blue-400">{value} </span>
+                <span key={index} className="body text-blue-400">{value+blanks(1)}</span>
             )
         })}
-        {obj_param.class && <span className="body text-vscode_green">{obj_param.class} </span>}
+        {obj_param.class && <span className="body text-vscode_green">{obj_param.class+blanks(1)}</span>}
         {obj_param.func && <><span className="body text-vscode_function">{obj_param.func}</span></>}
         {obj_param.parameter ? (
                 <>
@@ -358,24 +362,27 @@ export const csharp_func = (obj_param:{indent?:number,scope?:string[],class?:str
     }
     return (
         <>
-            <br/>
-            <span>{blanks(16 + _indent)}</span>
-            {obj_param._onClick ? (
-                <span className="rounded hover:bg-gray-600 link" onClick={()=>handleEvent()}>
-                    {item}
-                </span>
-            ):(
-                item
-            )}
-            {(obj_param.scope || obj_param.class) ? (
-                <>
-                <br/>
-                <span>{blanks(16)}</span>
-                <span className="body text-white">&#123;</span>
-                </>
-            ):(
-                <span className="body text-white">;</span>
-            )}
+            <div className="textContainer">
+                <span>{blanks(16 + _indent)}</span>
+                {obj_param._onClick ? (
+                    <span className="rounded hover:bg-gray-600 link" onClick={()=>handleEvent()}>
+                        {item}
+                    </span>
+                ):(
+                    item
+                )}
+                {!(obj_param.scope || obj_param.class) && 
+                    <span className="body text-white">;</span>
+                }
+            </div>
+            <div className="textContainer">
+                {(obj_param.scope || obj_param.class) && (
+                    <>
+                    <span>{blanks(16)}</span>
+                    <span className="body text-white">&#123;</span>
+                    </>
+                )}
+            </div>
         </>
     )
 }
@@ -405,7 +412,7 @@ export const csharp_statement = (obj_param:{closure?:boolean,kind:string,indent?
                 </>
             )}
             {obj_param.args[index].class && (
-                <span className="body text-vscode_green">{obj_param.args[index].class} </span>
+                <span className="body text-vscode_green">{obj_param.args[index].class+blanks(1)}</span>
             )}
             {mapped(obj_param.args[index].var)}
             {obj_param.args[index].method && (
@@ -417,13 +424,13 @@ export const csharp_statement = (obj_param:{closure?:boolean,kind:string,indent?
             )}
             {obj_param.args[index].in && (
                 <>
-                <span className="body text-vscode_mauve"> in</span>
-                <span className="body text-vscode_var"> {obj_param.args[index].in}</span>
+                <span className="body text-vscode_mauve">{blanks(1)}in</span>
+                <span className="body text-vscode_var">{blanks(1)+obj_param.args[index].in}</span>
                 </>
             )}
             {(obj_param.args[index].operator && obj_param.args[index].operator!=="!") && (
                 <>
-                <span className="body text-white"> {obj_param.args[index].operator} </span>
+                <span className="body text-white">{blanks(1)+obj_param.args[index].operator+blanks(1)}</span>
                 </>
             )}
             </>
@@ -439,24 +446,22 @@ export const csharp_statement = (obj_param:{closure?:boolean,kind:string,indent?
         )
     }
     return(
-        <>
-        <br/>
+        <div className="textContainer">
         <span>{blanks(16 + _indent)}</span>
         {obj_param.closure && <span className="body text-white">&#125;</span>}
         <span className="body text-vscode_mauve">{obj_param.kind}</span>
         <span className="body text-white">(</span>
         {iterate()}
         <span className="body text-white">)&#123;</span>
-        </>
+        </div>
     )
 }
 
 export const cshartp_closure = (input:string,indent:number) => {
     return(
-        <>
-        <br/>
+        <div className="textContainer">
         <span>{blanks(16 + (8 * indent))}</span>
         <span className="body text-white">{input}</span>
-        </>
+        </div>
     )
 }

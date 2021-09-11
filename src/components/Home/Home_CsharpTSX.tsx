@@ -1,7 +1,7 @@
 import React from 'react'
 import Env from '../../env.json';
 import { useHistory } from 'react-router-dom';
-import { csharp_using, csharp_namespace, csharp_class, csharp_object, csharp_func, csharp_statement, cshartp_closure } from '../../global';
+import { csharp_using, csharp_namespace, csharp_class, csharp_object, csharp_func, csharp_statement, br, cshartp_closure } from '../../global';
 
 const Home_CsharpTSX: React.FC = () => {
     const history = useHistory();
@@ -17,14 +17,15 @@ const Home_CsharpTSX: React.FC = () => {
             {csharp_class('Home')}
             {csharp_object({class:"Data_Analysis",obj:[{name:'R',url:Env.url_R},{name:'Python',url:Env.url_Python},{name:'SPSS',url:Env.url_SPSS}]})}
             {csharp_object({class:"Full_Stack",obj:[{name:'Web'},{name:'Mobile'}]})}
-            <br/>
             {csharp_func({scope:["public","static","async"],class:"View",func:"Sections"})}
             {csharp_object({indent:1,class:"HttpClient",obj:[{name:'client'}],update:{operator:"=",scope:"new",class:"HttpClient"}})}
             {csharp_object({indent:1,class:"HttpResponse",obj:[{name:'response'}],update:{operator:"=",scope:"await",var:"client",class:"GetAsync",parameter:"@https://AndyLee_Dev.com"}})}
+            {br}
             {csharp_statement({kind:"if",indent:1,args:[{var:["response","IsSuccessStatusCode"]}]})}
             {csharp_object({indent:2,vartype:"string",obj:[{name:'content'}],update:{operator:"=",scope:"await",var:"response",class:"ReadAsStringAsync",extension:['Content']}})}
             {csharp_object({indent:2,class:"XmlDocument",obj:[{name:'document'}],update:{operator:"=",scope:"new",class:"XmlDocument"}})}
             {csharp_object({indent:2,class:"XmlNodeList",obj:[{name:'nodes'}],update:{operator:"=",var:"document",class:"SelectNodes",parameter:"@descendant::category",extension:['DocumentElement']}})}
+            {br}
             {csharp_statement({kind:"foreach",indent:2,args:[{class:"XmlNode",var:["node"],in:"nodes"}]})}
             {csharp_object({indent:3,vartype:"var",obj:[{name:'section'}],update:{operator:"=",var:"node",class:"SelectSingleNode",parameter:"@Section"}})}
             {csharp_statement({kind:"if",indent:3,args:[{var:["node"],operator:"==",},{var:["@About_Me"]}]})}

@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 .app {
-    @apply bg-vscode_bg bg-scroll w-screen h-screen;
+    @apply bg-vscode_bg bg-scroll w-screen h-screen max-w-full overflow-x-hidden;
 }
 
 .mainContainer {
-    @apply w-11/12 mx-auto border-2 p-4 rounded-lg md:w-10/12 lg:w-6/12 overflow-hidden bg-vscode_bg-dark;
+    @apply w-11/12 mx-auto border-2 p-4 rounded-lg lg:w-8/12 overflow-x-auto bg-vscode_bg-dark mb-10;
 }
 
 .body {
