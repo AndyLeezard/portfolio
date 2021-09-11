@@ -31,13 +31,13 @@ const Home: React.FC = () => {
         const items = content.map((value,index)=>{return(<img key={index} className={"h-7 w-7 hidden"+`${index>0 && ' md:block'}`} src={value.imgsrc} alt={value.alt} title={value.alt}/>)})
         if(crntLang===id){
             return(
-                <div className="h-10 min-w-12 rounded border border-vscode_green hover:bg-gray-500 link flex flex-row items-center justify-center space-x-1 px-2">
+                <div className="h-10 min-w-12 rounded border border-vscode_green bg-vscode_bg hover:bg-gray-500 link flex flex-row items-center justify-center space-x-1 px-2">
                     {items}
                 </div>
             )
         }else{
             return(
-                <div className="h-10 min-w-12 rounded border border-opacity-50 border-gray-400 hover:bg-gray-600 link flex flex-row items-center justify-center space-x-1 px-2" onClick={()=>langHandler(id)}>
+                <div className="h-10 min-w-12 rounded border border-opacity-50 border-gray-400 hover:bg-gray-500 link flex flex-row items-center justify-center space-x-1 px-2" onClick={()=>langHandler(id)}>
                     {items}
                 </div>
             )

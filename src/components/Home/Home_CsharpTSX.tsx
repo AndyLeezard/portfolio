@@ -1,40 +1,18 @@
 import React from 'react'
 import Env from '../../env.json';
 import { useHistory } from 'react-router-dom';
-import { Csharp_usingProps, csharp_namespace, csharp_class, csharp_object, csharp_func, csharp_statement, cshartp_closure } from '../../global';
+import { csharp_using, csharp_namespace, csharp_class, csharp_object, csharp_func, csharp_statement, cshartp_closure } from '../../global';
 
 const Home_CsharpTSX: React.FC = () => {
     const history = useHistory();
-    const ImportComponent: React.FC<Csharp_usingProps> = ({url,source}) => {
-        const item = source.map((value,index:number)=>{
-            return (
-                <>
-                <span key={index} className="body text-vscode_green">{value}</span>
-                <span className="body text-white">{index<source.length-1 ? '.':''}</span>
-                </>
-        )})
-        return (
-            <div>
-            <span className="body text-vscode_mauve">using </span>
-            {url ? (
-                <a className="rounded hover:bg-gray-600" href={url} target="_blank" rel="noopener noreferrer">
-                    {item}
-                </a>
-            ):(
-                item
-            )}
-            <span className="body text-white">;</span>
-            </div>
-        )
-    }
 
     return (
         <div className="mainContainer">
             <p className="body text-vscode_comment">{"Current section : HOME".doubleSlash()}</p>
             <p className="body text-vscode_comment">{"Current theme : C# DotNet Core".doubleSlash()}</p>
-            <ImportComponent url={Env.url_URCA} source={['University_of_Reims_Champagne-Ardenne','BSc_in_Economics']}/>
-            <ImportComponent url={Env.url_URCA} source={['Career','Academic','Major','Data_Analysis']}/>
-            <ImportComponent source={['Career','Professional','Dev','Full-stack']}/>
+            {csharp_using({url:Env.url_URCA,source:['University_of_Reims_Champagne-Ardenne','BSc_in_Economics']})}
+            {csharp_using({url:Env.url_URCA,source:['Career','Academic','Major','Data_Analysis']})}
+            {csharp_using({source:['Career','Professional','Dev','Full-stack']})}
             {csharp_namespace(['Personal_Website'])}
             {csharp_class('Home')}
             {csharp_object({class:"Data_Analysis",obj:[{name:'R',url:Env.url_R},{name:'Python',url:Env.url_Python},{name:'SPSS',url:Env.url_SPSS}]})}

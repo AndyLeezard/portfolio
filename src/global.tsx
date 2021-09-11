@@ -157,6 +157,29 @@ export const react_component = (name:string,_onClick:{():void}) => {
     )
 }
 
+export const csharp_using = (input:Csharp_usingProps) => {
+    const item = input.source.map((value,index:number)=>{
+        return (
+            <>
+            <span key={index} className="body text-vscode_green">{value}</span>
+            <span className="body text-white">{index<input.source.length-1 ? '.':''}</span>
+            </>
+    )})
+    return (
+        <p className="textContainer">
+        <span className="body text-vscode_mauve">using{blanks(1)}</span>
+        {input.url ? (
+            <a className="rounded hover:bg-gray-600" href={input.url} target="_blank" rel="noopener noreferrer">
+                {item}
+            </a>
+        ):(
+            item
+        )}
+        <span className="body text-white">;</span>
+        </p>
+    )
+}
+
 export const csharp_namespace = (name:string[]) => {
     const item = name.map((value,index:number)=>{
         return (
