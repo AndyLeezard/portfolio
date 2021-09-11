@@ -31,7 +31,7 @@ const Home: React.FC = () => {
         const items = content.map((value,index)=>{return(<img key={index} className={"h-7 w-7 hidden"+`${index>0 && ' md:block'}`} src={value.imgsrc} alt={value.alt} title={value.alt}/>)})
         if(crntLang===id){
             return(
-                <div className="h-10 min-w-12 rounded border border-vscode_green-light hover:bg-gray-500 link flex flex-row items-center justify-center space-x-1 px-2">
+                <div className="h-10 min-w-12 rounded border border-vscode_green hover:bg-gray-500 link flex flex-row items-center justify-center space-x-1 px-2">
                     {items}
                 </div>
             )
@@ -46,14 +46,14 @@ const Home: React.FC = () => {
 
     return (
     <div>
-        <div className="flex flex-col h-auto place-items-center pt-12 px-4">
+        <div className="flex flex-col h-auto place-items-center pt-12 px-4 mb-1">
             <img className="w-32 h-32 rounded-lg mb-4" src="images/profile.jpg" alt="Andy Lee" title="profile picture"/>
             <h4 className="headerFont text-white">Andy Lee</h4>
-            <h4 className="frontFont text-vscode_comment-light">{"Freelance full-stack web/mobile app developper".commentBlock()}</h4>
-            <h4 className="frontFont text-vscode_comment-light">{"BSc in Economics - Majored in Economic Analysis using big data".commentBlock()}</h4>
-            <h4 className="frontFont text-vscode_comment-light">{`${state.lang}`.commentBlock()}</h4>
+            <h4 className="frontFont text-vscode_comment">{"Freelance full-stack web/mobile app developper".commentBlock()}</h4>
+            <h4 className="frontFont text-vscode_comment">{"BSc in Economics - Majored in Economic Analysis using big data".commentBlock()}</h4>
+            <h4 className="frontFont text-vscode_comment">{`${state.lang}`.commentBlock()}</h4>
         </div>
-        <div className="w-11/12 md:w-10/12 lg:w-6/12 mx-auto border-2 p-4 rounded-lg flex flex-row justify-center space-x-4 mb-2">
+        <div className="bg-vscode_bg-dark w-11/12 md:w-10/12 lg:w-6/12 mx-auto border-2 p-4 rounded-lg flex flex-row justify-center space-x-4 mb-2">
             <LanguageComponent content={[{alt:'React',imgsrc:'/svgs/react.svg'},{alt:'Node.js',imgsrc:'/svgs/nodejs.svg'},{alt:'JavaScript&TypeScript',imgsrc:'/pngs/jsts.png'},{alt:'Next.JS',imgsrc:'/svgs/nextjs.svg'},{alt:'Redux',imgsrc:'/svgs/redux.svg'}]} id={langs.REACT}/>
             <LanguageComponent content={[{alt:'C#',imgsrc:'/svgs/csharp.svg'},{alt:'.NetCore',imgsrc:'/svgs/netcore.svg'},{alt:'Blazor',imgsrc:'/svgs/blazor.svg'},{alt:'Unity',imgsrc:'/svgs/unity.svg'}]} id={langs.CSHARP}/>
             <LanguageComponent content={[{alt:'Python',imgsrc:'/svgs/python.svg'},{alt:'Django',imgsrc:'/svgs/django.svg'}]} id={langs.PYTHON}/>

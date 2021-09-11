@@ -8,8 +8,8 @@ const Home_CsharpTSX: React.FC = () => {
 
     return (
         <div className="mainContainer">
-            <p className="body text-vscode_comment-light">{"Current section : HOME".commentSharp()}</p>
-            <p className="body text-vscode_comment-light">{"Current theme : Python".commentSharp()}</p>
+            <p className="body text-vscode_comment">{"Current section : HOME".commentSharp()}</p>
+            <p className="body text-vscode_comment">{"Current theme : Python".commentSharp()}</p>
         </div>
     )
 }

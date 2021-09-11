@@ -9,13 +9,13 @@ const Home_CsharpTSX: React.FC = () => {
         const item = source.map((value,index:number)=>{
             return (
                 <>
-                <span key={index} className="body text-vscode_green-light">{value}</span>
+                <span key={index} className="body text-vscode_green">{value}</span>
                 <span className="body text-white">{index<source.length-1 ? '.':''}</span>
                 </>
         )})
         return (
             <div>
-            <span className="body text-vscode_mauve-light">using </span>
+            <span className="body text-vscode_mauve">using </span>
             {url ? (
                 <a className="rounded hover:bg-gray-600" href={url} target="_blank" rel="noopener noreferrer">
                     {item}
@@ -30,8 +30,8 @@ const Home_CsharpTSX: React.FC = () => {
 
     return (
         <div className="mainContainer">
-            <p className="body text-vscode_comment-light">{"Current section : HOME".doubleSlash()}</p>
-            <p className="body text-vscode_comment-light">{"Current theme : C# DotNet Core".doubleSlash()}</p>
+            <p className="body text-vscode_comment">{"Current section : HOME".doubleSlash()}</p>
+            <p className="body text-vscode_comment">{"Current theme : C# DotNet Core".doubleSlash()}</p>
             <ImportComponent url={Env.url_URCA} source={['University_of_Reims_Champagne-Ardenne','BSc_in_Economics']}/>
             <ImportComponent url={Env.url_URCA} source={['Career','Academic','Major','Data_Analysis']}/>
             <ImportComponent source={['Career','Professional','Dev','Full-stack']}/>

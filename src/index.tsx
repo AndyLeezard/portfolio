@@ -6,16 +6,6 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from "react-redux";
 import { store } from './state/store';
 
-declare global {
-  enum langs {
-    REACT='react',
-    PYTHON='python',
-    CSHARP='csharp',
-    GO='go',
-    R='r'
-  }
-}
-
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

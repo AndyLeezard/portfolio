@@ -28,32 +28,26 @@ module.exports = {
         },
         colors: {
           vscode_bg: {
-            light: "#ffffff",
+            dark: "#1E1E1E",
             DEFAULT: "#222426",
           },
           vscode_green: {
-            light: "#4EC9B0",
             DEFAULT: "#4EC9B0",
           },
           vscode_mauve: {
-            light: "#C586C0",
-            dark: "#C586C0"
+            DEFAULT: "#C586C0"
           },
           vscode_string: {
-            light: "#CE9178",
-            dark: "#CE8A6E"
+            DEFAULT: "#CE8A6E"
           },
           vscode_var: {
-            light: "#9CDCF7",
-            dark: "#9CDCF7"
+            DEFAULT: "#9CDCF7"
           },
           vscode_comment: {
-            light: "#6A9955",
-            dark: "#6A9955"
+            DEFAULT: "#6A9955"
           },
           vscode_function: {
-            light: "#DCDCAA",
-            dark: "#DCDCAA"
+            DEFAULT: "#DCDCAA"
           }
         }
       }
