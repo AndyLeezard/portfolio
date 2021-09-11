@@ -10,10 +10,6 @@
     @apply font-testing subpixel-antialiased;
 }
   
-.thecontainer {
-    @apply flex max-w-full ;
-}
-  
 .textContainer {
     @apply max-w-full h-auto text-left;
 }
@@ -24,6 +20,10 @@
   
 .headerFont {
     @apply font-testing font-bold subpixel-antialiased text-xl;
+}
+
+.frontFont {
+    @apply font-testing font-bold subpixel-antialiased text-base inline;
 }
   
 .header {
@@ -37,4 +37,8 @@
     .button {
         @apply p-2 text-xs bg-gradient-to-b from-indigo-200 to-indigo-400 border border-indigo-300 rounded-lg focus:outline-none focus:ring-indigo-500 focus:from-indigo-500;
     }
+}
+
+.mainContainer {
+    @apply w-11/12 mx-auto border-2 p-4 rounded-lg md:w-10/12 lg:w-6/12 overflow-hidden;
 }

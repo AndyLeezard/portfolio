@@ -64,8 +64,7 @@ const Home_ReactTSX: React.FC = () => {
     }
 
     return (
-    <div className="max-w-full items-center">
-        <div className="w-6/12 mx-auto border-2 p-4 rounded-lg">
+        <div className="mainContainer">
             <p className="body text-vscode_comment-light">{"Current section : HOME".doubleSlash()}</p>
             <p className="body text-vscode_comment-light">{"Current theme : React with TypeScript".doubleSlash()}</p>
             <ImportComponent starAs whole={[{name:'BSc_in_Economics',url:Env.url_BSc_EG}]} source={{name:'University-of-Reims-Champagne-Ardenne',url:Env.url_URCA}}/>
@@ -76,7 +75,6 @@ const Home_ReactTSX: React.FC = () => {
             {react_component("My_Works",()=>history.push('/about'))}
             {react_arrow_fin('Home')}
         </div>
-    </div>
     )
 }
 

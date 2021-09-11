@@ -29,8 +29,7 @@ const Home_CsharpTSX: React.FC = () => {
     }
 
     return (
-    <div className="max-w-full items-center">
-        <div className="w-6/12 mx-auto border-2 p-4 rounded-lg">
+        <div className="mainContainer">
             <p className="body text-vscode_comment-light">{"Current section : HOME".doubleSlash()}</p>
             <p className="body text-vscode_comment-light">{"Current theme : C# DotNet Core".doubleSlash()}</p>
             <ImportComponent url={Env.url_URCA} source={['University_of_Reims_Champagne-Ardenne','BSc_in_Economics']}/>
@@ -61,7 +60,6 @@ const Home_CsharpTSX: React.FC = () => {
             {cshartp_closure("}",-1)}
             {cshartp_closure("}",-2)}
         </div>
-    </div>
     )
 }
 
