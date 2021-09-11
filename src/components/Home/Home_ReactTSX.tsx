@@ -32,10 +32,12 @@ const Home_ReactTSX: React.FC = () => {
             {destructured && destructured.map((value,index:number)=>{
                 if(value.url){
                     return(
+                        <>
                         <a href={value.url} target="_blank" rel="noopener noreferrer">
                         <span key={index} className="body rounded hover:bg-gray-600 text-vscode_var-light">{value.name}</span>
-                        <span className="body text-white">{index>destructured.length-2 ? ' ':', '}</span>
                         </a>
+                        <span className="body text-white">{index>destructured.length-2 ? ' ':', '}</span>
+                        </>
                     )
                 }else{
                     return(
@@ -62,7 +64,7 @@ const Home_ReactTSX: React.FC = () => {
     }
 
     return (
-    <div className="bg-vscode_bg max-w-full items-center">
+    <div className="max-w-full items-center">
         <div className="w-6/12 mx-auto border-2 p-4 rounded-lg">
             <p className="body text-vscode_comment-light">{"Current section : HOME".doubleSlash()}</p>
             <p className="body text-vscode_comment-light">{"Current theme : React with TypeScript".doubleSlash()}</p>

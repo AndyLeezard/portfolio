@@ -63,7 +63,7 @@ const Portfolio_ReactTSX: React.FC = () => {
     }
 
     return (
-    <div className="bg-vscode_bg max-w-full items-center">
+    <div className="max-w-full items-center">
         <div className="w-6/12 mx-auto border-2 p-4 rounded-lg">
             <p className="body text-vscode_comment-light">{"Current section : PORTFOLIO".doubleSlash()}</p>
             <p className="body text-vscode_comment-light">{"Current theme : React with TypeScript".doubleSlash()}</p>

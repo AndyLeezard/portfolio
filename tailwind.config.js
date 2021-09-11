@@ -32,8 +32,8 @@ module.exports = {
             DEFAULT: "#222426",
           },
           vscode_green: {
-            light: "#60bf8f",
-            DEFAULT: "#60bf8f",
+            light: "#4EC9B0",
+            DEFAULT: "#4EC9B0",
           },
           vscode_mauve: {
             light: "#C586C0",

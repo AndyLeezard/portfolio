@@ -2,20 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+.app {
+    @apply bg-vscode_bg bg-scroll w-screen h-screen;
+}
+
 .body {
     @apply font-testing subpixel-antialiased;
 }
   
 .thecontainer {
-    @apply flex max-w-full bg-vscode_bg;
+    @apply flex max-w-full ;
 }
   
 .textContainer {
-    @apply max-w-full bg-vscode_bg h-auto text-left;
+    @apply max-w-full h-auto text-left;
 }
   
 .hoverTextContainer {
-    @apply flex container max-w-full bg-vscode_bg h-auto;
+    @apply flex container max-w-full h-auto;
 }
   
 .headerFont {
@@ -28,7 +32,7 @@
 
 @layer components {
     .link {
-        @apply cursor-pointer hover:underline;
+        @apply cursor-pointer;
     }
     .button {
         @apply p-2 text-xs bg-gradient-to-b from-indigo-200 to-indigo-400 border border-indigo-300 rounded-lg focus:outline-none focus:ring-indigo-500 focus:from-indigo-500;
