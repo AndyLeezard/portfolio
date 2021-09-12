@@ -2,16 +2,18 @@ import React from 'react'
 import Env from '../../env.json';
 import { useHistory } from 'react-router-dom';
 import { csharp_using, csharp_namespace, csharp_class, csharp_object, csharp_func, csharp_statement, br, cshartp_closure } from '../../global';
-
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+    
 const Home_CsharpTSX: React.FC = () => {
     const history = useHistory();
+    const widthFallback = useMediaQuery('(min-width:800px)');
 
     return (
         <div className="mainContainer">
             <p className="body text-vscode_comment">{"Current section : HOME".doubleSlash()}</p>
             <p className="body text-vscode_comment">{"Current theme : C# DotNet Core".doubleSlash()}</p>
-            {csharp_using({url:Env.url_URCA,source:['University_of_Reims_Champagne-Ardenne','BSc_in_Economics']})}
-            {csharp_using({url:Env.url_URCA,source:['Career','Academic','Major','Data_Analysis']})}
+            {csharp_using({url:Env.url_university,source:[`${!widthFallback ? (Env.university_fallback):(Env.university)}`,'BSc_in_Economics']})}
+            {csharp_using({url:Env.url_university,source:['Career','Academic','Major','Data_Analysis']})}
             {csharp_using({source:['Career','Professional','Dev','Full-stack']})}
             {csharp_namespace(['Personal_Website'])}
             {csharp_class('Home')}

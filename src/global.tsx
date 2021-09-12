@@ -6,16 +6,28 @@ export enum langs {
     R='r'
 }
 
+export enum objectTypes {
+    VAR='text-vscode_var',
+    FUNCTION='text-vscode_function',
+    GREEN='text-vscode_green', //mostly classes
+}
+
 export interface React_ImportProps {
     starAs?:boolean
-    whole?:{name:string,url?:string}[],
-    destructured?:{name:string,url?:string}[],
+    whole?:{name:string,url?:string}[]
+    destructured?:{name:string,url?:string}[]
     source:{name:string,url?:string}
 }
 
 export interface Csharp_usingProps {
     url?:string
     source:string[]
+}
+
+export interface Py_ImportProps {
+    source?:{name:string,url?:string}
+    target:{name:string,url?:string}
+    as?:{name:string,url?:string,is_a_function:boolean}
 }
 
 export const blanks = (size:number) => {
@@ -25,7 +37,7 @@ export const blanks = (size:number) => {
 
 export const br = (<div className="textContainer"><br/></div>);
 
-export const importComponent = (input:React_ImportProps) => {
+export const react_importComponent = (input:React_ImportProps) => {
     return (
         <div className="textContainer">
             <p>
@@ -462,6 +474,66 @@ export const cshartp_closure = (input:string,indent:number) => {
         <div className="textContainer">
         <span>{blanks(16 + (8 * indent))}</span>
         <span className="body text-white">{input}</span>
+        </div>
+    )
+}
+
+export const py_importComponent = (input:Py_ImportProps) => {
+    return (
+        <div className="textContainer">
+            <p>
+                {input.source && 
+                    <>
+                    <span className="body text-vscode_mauve">from{blanks(1)}</span>
+                    <span className="body text-vscode_green">{input.source.name.toLowerCase()+blanks(1)}</span>
+                    </>
+                }
+                <span className="body text-vscode_mauve">import{blanks(1)}</span>
+                {input.target.url ? (
+                    <a href={input.target.url} target="_blank" rel="noopener noreferrer">
+                    <span className="body text-vscode_green rounded hover:bg-gray-600">{input.target.name.toLowerCase()}</span>
+                    </a>
+                ):(
+                    <span className="body text-vscode_green rounded hover:bg-gray-600">{input.target.name.toLowerCase()}</span>
+                )}
+                {input.as &&
+                    <>
+                    <span className="body text-vscode_mauve">{blanks(1)}as</span>
+                    <span className={`body ${input.as.is_a_function ? ('text-vscode_function'):('text-vscode_green')}`}>{blanks(1)+input.as.name}</span>
+                    </>
+                }
+            </p>
+        </div>
+    )
+}
+
+export const py_def_declare = (input:{name:string,params?:string[]}) => {
+    return (
+        <div className="textContainer">
+            <p>
+                <span className="body text-blue-400">def{blanks(1)}</span>
+                <span className="body text-vscode_function">{input.name}</span>
+                <span className="body text-white">(
+                    {input.params && input.params.map((value,index)=>{
+                        return(<>
+                        <span className="body text-vscode_var">{value}</span>
+                        <span className="body text-white">{input.params && index<input.params.length-1 ? `,${blanks(1)}`:''}</span>
+                        </>)
+                    })}
+                ):</span>
+            </p>
+        </div>
+    )
+}
+
+export const py_def_body = (input:{return?:boolean,indent?:number,args:JSX.Element}) => {
+    return (
+        <div className="textContainer">
+            <span>{blanks(input.indent ?? 0)}</span>
+            <p>
+                <span className="body text-blue-400">return{blanks(1)}</span>
+                {input.args}
+            </p>
         </div>
     )
 }

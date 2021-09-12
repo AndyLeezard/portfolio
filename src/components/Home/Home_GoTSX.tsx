@@ -1,10 +1,11 @@
 import React from 'react'
 import Env from '../../env.json';
 import { useHistory } from 'react-router-dom';
-// import { } from '../../global';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const Home_CsharpTSX: React.FC = () => {
     const history = useHistory();
+    const widthFallback = useMediaQuery('(min-width:800px)');
 
     return (
         <div className="mainContainer">

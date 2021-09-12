@@ -6,6 +6,32 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from "react-redux";
 import { store } from './state/store';
 
+declare global {
+  interface String {
+      doubleSlash(): string;
+      commentBlock(): string;
+      commentSharp(): string;
+      comment_py(): string;
+      indentBy(size:number): string;
+  }
+}
+
+String.prototype.doubleSlash = function ():string {
+  return "// "+this;
+};
+String.prototype.commentBlock = function ():string {
+return "/* "+this+" */";
+};
+String.prototype.commentSharp = function ():string {
+  return "# "+this;
+};
+String.prototype.comment_py = function () {
+  return String.fromCharCode(34).repeat(3)+this+String.fromCharCode(34).repeat(3);
+};
+String.prototype.indentBy = function (size:number):string {
+return String.fromCharCode(160).repeat(size) + this;
+};
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
