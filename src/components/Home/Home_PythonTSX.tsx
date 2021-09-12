@@ -6,7 +6,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
     
 const Home_CsharpTSX: React.FC = () => {
     const history = useHistory();
-    const widthFallback = useMediaQuery('(min-width:800px)');
+    const widthFallback = useMediaQuery('(max-width:800px)');
 
     return (
         <div className="mainContainer">
@@ -14,8 +14,8 @@ const Home_CsharpTSX: React.FC = () => {
             <p className="body text-vscode_comment">{"Current theme : Python".commentSharp()}</p>
             {py_importComponent({target:{name:'Personal website'},as:{name:'render',is_a_function:false}})}
             <p className="body text-vscode_comment">{"Portfolio / experience / education".commentSharp()}</p>
-            {py_importComponent({source:{name:`${!widthFallback ? (Env.university_fallback):(Env.university)}`,url:Env.url_university},target:{name:'Economics'},as:{name:'BSc',is_a_function:false}})}
-            {py_importComponent({target:{name:'Data_Analysis'},as:{name:'Career-Academic-Major',is_a_function:false}})}
+            {py_importComponent({source:{name:`${widthFallback ? (Env.university_fallback):(Env.university)}`,url:Env.url_university},target:{name:'Economics'},as:{name:'BSc',is_a_function:false}})}
+            {py_importComponent({target:{name:'Data_Analysis'},as:{name:`${widthFallback ? (Env.major_fallback):(Env.major)}`,is_a_function:false}})}
             {py_importComponent({target:{name:'Full_stack'},as:{name:'Career-Professional-Dev',is_a_function:false}})}
             <br/>
             <p className="body text-vscode_function">@portfolio</p>

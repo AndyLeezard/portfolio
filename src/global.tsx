@@ -214,17 +214,17 @@ export const csharp_namespace = (name:string[]) => {
     )
 }
 
-export const csharp_class = (name:string) => {
+export const csharp_class = (name:string,indent?:number) => {
     return (
         <>
         <div className="textContainer">
-            <span>{blanks(8)}</span>
+            <span>{blanks(indent ?? 0)}</span>
             <span className="body text-blue-400">public class</span>
             <span className="body text-vscode_green">{blanks(1)+name}</span>
             <br/>
         </div>
         <p className="textContainer">
-            <span>{blanks(8)}</span>
+            <span>{blanks(indent ?? 0)}</span>
             <span className="body text-white">&#123;</span>
         </p>
         </>
@@ -232,7 +232,6 @@ export const csharp_class = (name:string) => {
 }
 
 export const csharp_object = (obj_param:{_onClick?:any,indent?:number,scope?:string[],vartype?:string,class?:string,varIsArray?:boolean[],obj:{name?:string,url?:string}[],update?:{operator:string,scope?:string,class?:string,var?:string,parameter?:string,extension?:string[]}}) => {
-    let _indent = 8 * (obj_param.indent ?? 0)
     const mapped = (input:string[]|undefined) => {
         return input?.map((value,index)=> {
             return(
@@ -318,7 +317,7 @@ export const csharp_object = (obj_param:{_onClick?:any,indent?:number,scope?:str
         <div className="textContainer">
             {obj_param._onClick ? (
                 <>
-                <span>{blanks(16 + _indent)}</span>
+                <span>{blanks(obj_param.indent ?? 0)}</span>
                 {typeof obj_param._onClick === "string" ? (
                     <a className="rounded hover:bg-gray-600" href={obj_param._onClick} target="_blank" rel="noopener noreferrer">
                         {rendering}
@@ -332,7 +331,7 @@ export const csharp_object = (obj_param:{_onClick?:any,indent?:number,scope?:str
                 </>
             ):(
                 <>
-                <span>{blanks(16 + _indent)}</span>
+                <span>{blanks(obj_param.indent ?? 0)}</span>
                 {rendering}
                 <span className="body text-white">;</span>
                 </>
@@ -342,7 +341,6 @@ export const csharp_object = (obj_param:{_onClick?:any,indent?:number,scope?:str
 }
 
 export const csharp_func = (obj_param:{indent?:number,scope?:string[],class?:string,func:string,parameter?:string,_onClick?:{():void}}) => {
-    let _indent = 8 * (obj_param.indent ?? 0)
     const item = (
         <>
         {obj_param.scope && obj_param.scope.map((value,index:number)=>{
@@ -375,7 +373,7 @@ export const csharp_func = (obj_param:{indent?:number,scope?:string[],class?:str
     return (
         <>
             <div className="textContainer">
-                <span>{blanks(16 + _indent)}</span>
+                <span>{blanks(obj_param.indent ?? 0)}</span>
                 {obj_param._onClick ? (
                     <span className="rounded hover:bg-gray-600 link" onClick={()=>handleEvent()}>
                         {item}
@@ -390,7 +388,7 @@ export const csharp_func = (obj_param:{indent?:number,scope?:string[],class?:str
             <div className="textContainer">
                 {(obj_param.scope || obj_param.class) && (
                     <>
-                    <span>{blanks(16)}</span>
+                    <span>{blanks(obj_param.indent ?? 0)}</span>
                     <span className="body text-white">&#123;</span>
                     </>
                 )}
@@ -400,7 +398,6 @@ export const csharp_func = (obj_param:{indent?:number,scope?:string[],class?:str
 }
 
 export const csharp_statement = (obj_param:{closure?:boolean,kind:string,indent?:number,args:{class?:string,var?:string[],in?:string,method?:string,operator?:string}[]}) => {
-    let _indent = 8 * (obj_param.indent ?? 0)
     const mapped = (input:string[]|undefined) => {
         return input?.map((value,index)=> {
             return(
@@ -459,7 +456,7 @@ export const csharp_statement = (obj_param:{closure?:boolean,kind:string,indent?
     }
     return(
         <div className="textContainer">
-        <span>{blanks(16 + _indent)}</span>
+        <span>{blanks(obj_param.indent ?? 0)}</span>
         {obj_param.closure && <span className="body text-white">&#125;</span>}
         <span className="body text-vscode_mauve">{obj_param.kind}</span>
         <span className="body text-white">(</span>
@@ -472,7 +469,7 @@ export const csharp_statement = (obj_param:{closure?:boolean,kind:string,indent?
 export const cshartp_closure = (input:string,indent:number) => {
     return(
         <div className="textContainer">
-        <span>{blanks(16 + (8 * indent))}</span>
+        <span>{blanks(indent)}</span>
         <span className="body text-white">{input}</span>
         </div>
     )

@@ -13,6 +13,7 @@ declare global {
       commentSharp(): string;
       comment_py(): string;
       indentBy(size:number): string;
+      splitByDash(): string[];
   }
 }
 
@@ -29,7 +30,10 @@ String.prototype.comment_py = function () {
   return String.fromCharCode(34).repeat(3)+this+String.fromCharCode(34).repeat(3);
 };
 String.prototype.indentBy = function (size:number):string {
-return String.fromCharCode(160).repeat(size) + this;
+  return String.fromCharCode(160).repeat(size) + this;
+};
+String.prototype.splitByDash = function ():string[] {
+  return this.split('-');
 };
 
 ReactDOM.render(
