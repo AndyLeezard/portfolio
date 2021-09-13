@@ -21,12 +21,12 @@ String.prototype.doubleSlash = function ():string {
   return "// "+this;
 };
 String.prototype.commentBlock = function ():string {
-return "/* "+this+" */";
+  return "/* "+this+" */";
 };
 String.prototype.commentSharp = function ():string {
   return "# "+this;
 };
-String.prototype.comment_py = function () {
+String.prototype.comment_py = function ():string {
   return String.fromCharCode(34).repeat(3)+this+String.fromCharCode(34).repeat(3);
 };
 String.prototype.indentBy = function (size:number):string {

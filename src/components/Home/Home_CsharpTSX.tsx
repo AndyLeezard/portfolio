@@ -1,7 +1,7 @@
 import React from 'react'
 import Env from '../../env.json';
 import { useHistory } from 'react-router-dom';
-import { csharp_using, csharp_namespace, csharp_class, csharp_object, csharp_func, csharp_statement, br, cshartp_closure } from '../../global';
+import { csharp_using, csharp_namespace, csharp_class, csharp_object, csharp_func, csharp_statement, br, closure } from '../../global';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
     
 const Home_CsharpTSX: React.FC = () => {
@@ -13,7 +13,7 @@ const Home_CsharpTSX: React.FC = () => {
         push:string[]
     }
     const conditionalAsArray = (input:ConditionalRenderParam):string[] => {
-        let arr = Array();
+        let arr = [];
         if(widthFallback){
             arr = [input.fallback];
         }else{
@@ -40,29 +40,29 @@ const Home_CsharpTSX: React.FC = () => {
             {csharp_using({source:conditionalAsArray({default:Env.career,fallback:Env.career_fallback,push:['Full_stack']})})}
             {csharp_namespace(['Personal_Website'])}
             {csharp_class('Home',conditionalIndent(8,2))}
-            {csharp_object({class:"Data_Analysis",obj:[{name:'R',url:Env.url_R},{name:'Python',url:Env.url_Python},{name:'SPSS',url:Env.url_SPSS}],indent:conditionalIndent(16,4)})}
-            {csharp_object({class:"Full_Stack",obj:[{name:'Web'},{name:'Mobile'}],indent:conditionalIndent(16,4)})}
-            {csharp_func({scope:["public","static","async"],class:"View",func:"Sections",indent:conditionalIndent(16,4)})}
-            {csharp_object({indent:1,class:"HttpClient",obj:[{name:'client'}],update:{operator:"=",scope:"new",class:"HttpClient"}})}
-            {csharp_object({indent:1,class:"HttpResponse",obj:[{name:'response'}],update:{operator:"=",scope:"await",var:"client",class:"GetAsync",parameter:"@https://AndyLee_Dev.com"}})}
+            {csharp_object({indent:conditionalIndent(16,4),class:"Data_Analysis",obj:[{name:'R',url:Env.url_R},{name:'Python',url:Env.url_Python},{name:'SPSS',url:Env.url_SPSS}]})}
+            {csharp_object({indent:conditionalIndent(16,4),class:"Full_Stack",obj:[{name:'Web'},{name:'Mobile'}],})}
+            {csharp_func({indent:conditionalIndent(16,4),scope:["public","static","async"],class:"View",func:"Sections",})}
+            {csharp_object({indent:conditionalIndent(24,6),class:"HttpClient",obj:[{name:'client'}],update:{operator:"=",scope:"new",class:"HttpClient"}})}
+            {csharp_object({indent:conditionalIndent(24,6),class:"HttpResponse",obj:[{name:'response'}],update:{operator:"=",scope:"await",var:"client",class:"GetAsync",parameter:"@https://AndyLee_Dev.com"}})}
             {br}
-            {csharp_statement({kind:"if",indent:1,args:[{var:["response","IsSuccessStatusCode"]}]})}
-            {csharp_object({indent:2,vartype:"string",obj:[{name:'content'}],update:{operator:"=",scope:"await",var:"response",class:"ReadAsStringAsync",extension:['Content']}})}
-            {csharp_object({indent:2,class:"XmlDocument",obj:[{name:'document'}],update:{operator:"=",scope:"new",class:"XmlDocument"}})}
-            {csharp_object({indent:2,class:"XmlNodeList",obj:[{name:'nodes'}],update:{operator:"=",var:"document",class:"SelectNodes",parameter:"@descendant::category",extension:['DocumentElement']}})}
+            {csharp_statement({indent:conditionalIndent(24,6),kind:"if",args:[{var:["response","IsSuccessStatusCode"]}]})}
+            {csharp_object({indent:conditionalIndent(32,8),vartype:"string",obj:[{name:'content'}],update:{operator:"=",scope:"await",var:"response",class:"ReadAsStringAsync",extension:['Content']}})}
+            {csharp_object({indent:conditionalIndent(32,8),class:"XmlDocument",obj:[{name:'document'}],update:{operator:"=",scope:"new",class:"XmlDocument"}})}
+            {csharp_object({indent:conditionalIndent(32,8),class:"XmlNodeList",obj:[{name:'nodes'}],update:{operator:"=",var:"document",class:"SelectNodes",parameter:"@descendant::category",extension:['DocumentElement']}})}
             {br}
-            {csharp_statement({kind:"foreach",indent:2,args:[{class:"XmlNode",var:["node"],in:"nodes"}]})}
-            {csharp_object({indent:3,vartype:"var",obj:[{name:'section'}],update:{operator:"=",var:"node",class:"SelectSingleNode",parameter:"@Section"}})}
-            {csharp_statement({kind:"if",indent:3,args:[{var:["node"],operator:"==",},{var:["@About_Me"]}]})}
-            {csharp_func({indent:4,func:"GoTo",parameter:"@About_Me",_onClick:()=>history.push('/about')})}
-            {csharp_statement({closure:true,kind:"else if",indent:3,args:[{var:["node"],operator:"==",},{var:["@My_Works"]}]})}
-            {csharp_func({indent:4,func:"GoTo",parameter:"@My_Works",_onClick:()=>history.push('/my_works')})}
-            {cshartp_closure("}",3)}
-            {cshartp_closure("}",2)}
-            {cshartp_closure("}",1)}
-            {cshartp_closure("}",0)}
-            {cshartp_closure("}",-1)}
-            {cshartp_closure("}",-2)}
+            {csharp_statement({indent:conditionalIndent(32,8),kind:"foreach",args:[{class:"XmlNode",var:["node"],in:"nodes"}]})}
+            {csharp_object({indent:conditionalIndent(40,10),vartype:"var",obj:[{name:'section'}],update:{operator:"=",var:"node",class:"SelectSingleNode",parameter:"@Section"}})}
+            {csharp_statement({indent:conditionalIndent(40,10),kind:"if",args:[{var:["node"],operator:"==",},{var:["@About_Me"]}]})}
+            {csharp_func({indent:conditionalIndent(48,12),func:"GoTo",parameter:"@About_Me",_onClick:()=>history.push('/about')})}
+            {csharp_statement({indent:conditionalIndent(40,10),closure:true,kind:"else if",args:[{var:["node"],operator:"==",},{var:["@My_Works"]}]})}
+            {csharp_func({indent:conditionalIndent(48,12),func:"GoTo",parameter:"@My_Works",_onClick:()=>history.push('/my_works')})}
+            {closure("}",conditionalIndent(40,10))}
+            {closure("}",conditionalIndent(32,8))}
+            {closure("}",conditionalIndent(24,6))}
+            {closure("}",conditionalIndent(16,4))}
+            {closure("}",conditionalIndent(8,2))}
+            {closure("}",0)}
         </div>
     )
 }

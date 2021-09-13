@@ -15,7 +15,7 @@ module.exports = {
         md: '768px',
         lg: '1024px',
         xl: '1280px',
-        '2xl': '1536px',
+        '2xl': '1800px',
       },
       extend: {
         zIndex: {
@@ -25,6 +25,18 @@ module.exports = {
         minWidth: {
           8: '32px',
           12: '48px',
+          threefourth: '75%',
+          half: '50%',
+          athird: '33%',
+          quarter: '25%',
+          atenth: '10%',
+        },
+        maxWidth: {
+          alignText: '50px',
+          half: '50%',
+          athird: '33%',
+          quarter: '25%',
+          atenth: '10%',
         },
         colors: {
           vscode_bg: {
@@ -48,6 +60,12 @@ module.exports = {
           },
           vscode_function: {
             DEFAULT: "#DCDCAA"
+          },
+          vscode_ivory: {
+            DEFAULT: "#D4D4D4"
+          },
+          vscode_vartype: {
+            DEFAULT: "#569CD6"
           }
         }
       }

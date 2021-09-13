@@ -18,9 +18,9 @@ const Home_CsharpTSX: React.FC = () => {
             {py_importComponent({target:{name:'Data_Analysis'},as:{name:`${widthFallback ? (Env.major_fallback):(Env.major)}`,is_a_function:false}})}
             {py_importComponent({target:{name:'Full_stack'},as:{name:'Career-Professional-Dev',is_a_function:false}})}
             <br/>
-            <p className="body text-vscode_function">@portfolio</p>
+            <p className="body text-vscode_function">@render</p>
             {py_def_declare({name:'view_sections',params:['req']})}
-            <p className="body text-vscode_string">{blanks(4)+"comment".comment_py()}</p>
+            <p className="body text-vscode_string">{blanks(4)+" renders the selected section ".comment_py()}</p>
             {py_def_body({
                 return:true,
                 indent:4,
@@ -30,7 +30,7 @@ const Home_CsharpTSX: React.FC = () => {
                         <span className="body text-white">(</span>
                         <span className="body text-vscode_var">req</span>
                         <span className="body text-white">,</span>
-                        <span className="body text-vscode_string">'portfolio.html'</span>
+                        <span className="body text-vscode_string">'AndyLee_Dev.html'</span>
                         <span className="body text-white">, &#123;</span>
                         <span className="body text-vscode_string">'current_section'</span>
                         <span className="body text-white">:</span>

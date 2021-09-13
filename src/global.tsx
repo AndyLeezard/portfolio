@@ -12,19 +12,32 @@ export enum objectTypes {
     GREEN='text-vscode_green', //mostly classes
 }
 
-export interface React_ImportProps {
+export interface Props_React_Import {
     starAs?:boolean
     whole?:{name:string,url?:string}[]
     destructured?:{name:string,url?:string}[]
     source:{name:string,url?:string}
 }
 
-export interface Csharp_usingProps {
+export interface Props_Csharp_Using {
     url?:string
     source:string[]
 }
 
-export interface Py_ImportProps {
+export interface Props_Csharp_Statement {
+    closure?:boolean,
+    kind:string,
+    indent?:number,
+    args:{
+        class?:string,
+        var?:string[],
+        in?:string,
+        method?:string,
+        operator?:string
+    }[]
+}
+
+export interface Props_Py_Import {
     source?:{name:string,url?:string}
     target:{name:string,url?:string}
     as?:{name:string,url?:string,is_a_function:boolean}
@@ -37,7 +50,7 @@ export const blanks = (size:number) => {
 
 export const br = (<div className="textContainer"><br/></div>);
 
-export const react_importComponent = (input:React_ImportProps) => {
+export const react_importComponent = (input:Props_React_Import) => {
     return (
         <div className="textContainer">
             <p>
@@ -169,7 +182,7 @@ export const react_component = (name:string,_onClick:{():void}) => {
     )
 }
 
-export const csharp_using = (input:Csharp_usingProps) => {
+export const csharp_using = (input:Props_Csharp_Using) => {
     const item = input.source.map((value,index:number)=>{
         return (
             <>
@@ -397,7 +410,7 @@ export const csharp_func = (obj_param:{indent?:number,scope?:string[],class?:str
     )
 }
 
-export const csharp_statement = (obj_param:{closure?:boolean,kind:string,indent?:number,args:{class?:string,var?:string[],in?:string,method?:string,operator?:string}[]}) => {
+export const csharp_statement = (obj_param:Props_Csharp_Statement):JSX.Element => {
     const mapped = (input:string[]|undefined) => {
         return input?.map((value,index)=> {
             return(
@@ -446,7 +459,7 @@ export const csharp_statement = (obj_param:{closure?:boolean,kind:string,indent?
         ): <></>                              
     }
     const iterate = () => {
-        let res = Array();
+        let res = [];
         for (let i = 0; i < obj_param.args.length; i++) {
             res.push(item(i))
         }
@@ -466,7 +479,7 @@ export const csharp_statement = (obj_param:{closure?:boolean,kind:string,indent?
     )
 }
 
-export const cshartp_closure = (input:string,indent:number) => {
+export const closure = (input:string,indent:number):JSX.Element => {
     return(
         <div className="textContainer">
         <span>{blanks(indent)}</span>
@@ -475,7 +488,7 @@ export const cshartp_closure = (input:string,indent:number) => {
     )
 }
 
-export const py_importComponent = (input:Py_ImportProps) => {
+export const py_importComponent = (input:Props_Py_Import):JSX.Element => {
     return (
         <div className="textContainer">
             <p>
@@ -504,7 +517,7 @@ export const py_importComponent = (input:Py_ImportProps) => {
     )
 }
 
-export const py_def_declare = (input:{name:string,params?:string[]}) => {
+export const py_def_declare = (input:{name:string,params?:string[]}):JSX.Element => {
     return (
         <div className="textContainer">
             <p>
@@ -523,7 +536,7 @@ export const py_def_declare = (input:{name:string,params?:string[]}) => {
     )
 }
 
-export const py_def_body = (input:{return?:boolean,indent?:number,args:JSX.Element}) => {
+export const py_def_body = (input:{return?:boolean,indent?:number,args:JSX.Element}):JSX.Element => {
     return (
         <div className="textContainer">
             <span>{blanks(input.indent ?? 0)}</span>
@@ -532,5 +545,70 @@ export const py_def_body = (input:{return?:boolean,indent?:number,args:JSX.Eleme
                 {input.args}
             </p>
         </div>
+    )
+}
+
+export const go_package = (pkg:string):JSX.Element => {
+    return (
+        <div className="textContainer">
+            <span className="body text-blue-400">package</span>
+            <span className="body text-vscode_ivory">{blanks(1)+pkg}</span>
+        </div>
+    )
+}
+
+export const go_import = (elements:{name:string,url?:string}[]):JSX.Element => {
+    return (
+        <>
+        <div className="textContainer">
+            <span className="body text-blue-400">import{blanks(1)}</span>
+            <span className="body text-vscode_ivory">(</span>
+        </div>
+        {elements.map((value,index:number)=>{
+            if(value.url){
+                return(
+                    <div key={index} className="textContainer">
+                        <span className="body">{blanks(4)}</span>
+                        <a href={value.url} target="_blank" rel="noopener noreferrer">
+                            <span className="body text-vscode_string rounded hover:bg-gray-600">{String.fromCharCode(34)+value.name+String.fromCharCode(34)}</span>
+                        </a>
+                    </div>
+                )
+            }else{
+                return(
+                    <div className="textContainer">
+                        <span className="body text-vscode_string">{blanks(4)+String.fromCharCode(34)+value.name+String.fromCharCode(34)}</span>
+                    </div>
+                )
+            }
+        })}
+        <div className="textContainer">
+            <span className="body text-vscode_ivory">)</span>
+        </div>
+        </>
+    )
+}
+
+export const go_structure = (type:string,elements:{name:string,type:string,json:string}[]):JSX.Element => {
+    return(
+        <>
+        <div className="textContainer">
+            <span className="body text-blue-400">type</span>
+            <span className="body text-vscode_green">{blanks(1)+type+blanks(1)}</span>
+            <span className="body text-blue-400">struct{blanks(1)}</span>
+            <span className="body text-vscode_ivory">&#123;</span>
+        </div>
+        <div className="flex flex-col pl-4 items-start w-full">
+        {elements.map((value,index:number)=>{
+            return(
+                <div key={index} className="flex justify-evenly text-left leading-none min-w-threefourth xl:min-w-half 2xl:min-w-athird">
+                    <span className="body text-vscode_ivory w-4/12 overflow-x-hidden">{value.name}</span>
+                    <span className="body text-vscode_green w-3/12 overflow-x-hidden">{value.type}</span>
+                    <span className="body text-vscode_string w-5/12">{"`json:"+String.fromCharCode(34)+value.json+String.fromCharCode(34)+"`"}</span>
+                </div>
+            )
+        })}
+        </div>
+        </>
     )
 }
