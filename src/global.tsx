@@ -43,6 +43,14 @@ export interface Props_Py_Import {
     as?:{name:string,url?:string,is_a_function:boolean}
 }
 
+export const conditionalIndent = (widthFallback:boolean,_default:number,fallback:number):number => {
+    if(widthFallback){
+        return fallback
+    }else{
+        return _default
+    }
+}
+
 export const blanks = (size:number) => {
     if(size<0){size=0;}
     return String.fromCharCode(160).repeat(size);
@@ -116,7 +124,7 @@ export const react_arrow = (name:string) => {
         <>
             {br}
             <p className="textContainer">
-                <span className="body text-blue-400">const</span>
+                <span className="body text-vscode_vartype">const</span>
                 <span className="body text-vscode_function">{blanks(1)+name}</span>
                 <span className="body text-white">: &#60;</span>
                 <span className="body text-vscode_green">React</span>
@@ -127,7 +135,7 @@ export const react_arrow = (name:string) => {
                 <span className="body text-vscode_green">JSX</span>
                 <span className="body text-white">.</span>
                 <span className="body text-vscode_green">Element{blanks(1)}</span>
-                <span className="body text-blue-400">=&#62;{blanks(1)}</span>
+                <span className="body text-vscode_vartype">=&#62;{blanks(1)}</span>
                 <span className="body text-white">&#123;</span>
             </p>
             <p className="textContainer">
@@ -138,7 +146,7 @@ export const react_arrow = (name:string) => {
             <p className="textContainer">
                 <span>{blanks(8)}</span>
                 <span className="body text-gray-200">&#60;</span>
-                <span className="body text-blue-400">div</span>
+                <span className="body text-vscode_vartype">div</span>
                 <span className="body text-gray-200">&#62;</span>
             </p>
         </>
@@ -151,7 +159,7 @@ export const react_arrow_fin = (name:string) => {
             <p className="textContainer">
                 <span className="body text-gray-200">{blanks(4)}&#60;</span>
                 <span className="body text-gray-200">&#47;</span>
-                <span className="body text-blue-400">div</span>
+                <span className="body text-vscode_vartype">div</span>
                 <span className="body text-gray-200">&#62;</span>
             </p>
             <p className="textContainer">
@@ -217,7 +225,7 @@ export const csharp_namespace = (name:string[]) => {
         <>
         <br/>
         <div className="textContainer">
-            <span className="body text-blue-400">namespace{blanks(1)}</span>
+            <span className="body text-vscode_vartype">namespace{blanks(1)}</span>
             {item}
         </div>
         <p className="textContainer">
@@ -232,7 +240,7 @@ export const csharp_class = (name:string,indent?:number) => {
         <>
         <div className="textContainer">
             <span>{blanks(indent ?? 0)}</span>
-            <span className="body text-blue-400">public class</span>
+            <span className="body text-vscode_vartype">public class</span>
             <span className="body text-vscode_green">{blanks(1)+name}</span>
             <br/>
         </div>
@@ -278,10 +286,10 @@ export const csharp_object = (obj_param:{_onClick?:any,indent?:number,scope?:str
         <>
         {obj_param.scope && obj_param.scope.map((value,index:number)=>{
             return(
-                <span key={index} className="body text-blue-400">{value+blanks(1)}</span>
+                <span key={index} className="body text-vscode_vartype">{value+blanks(1)}</span>
             )
         })}
-        {obj_param.vartype && <span className="body text-blue-400">{obj_param.vartype}{(!obj_param.varIsArray) && blanks(1)}</span>}
+        {obj_param.vartype && <span className="body text-vscode_vartype">{obj_param.vartype}{(!obj_param.varIsArray) && blanks(1)}</span>}
         {obj_param.class && <span className="body text-vscode_green">{obj_param.class}{(!obj_param.varIsArray) && blanks(1)}</span>}
         {(obj_param.varIsArray !== undefined) && <span className="body text-white">{"[]".repeat(obj_param.varIsArray.length)+blanks(1)}</span>}
         {item}
@@ -289,7 +297,7 @@ export const csharp_object = (obj_param:{_onClick?:any,indent?:number,scope?:str
             <>
             <span className="body text-white">{blanks(1)+obj_param.update.operator+blanks(1)}</span>
             {obj_param.update.scope && (
-                <span className="body text-blue-400">{obj_param.update.scope+blanks(1)}</span>
+                <span className="body text-vscode_vartype">{obj_param.update.scope+blanks(1)}</span>
             )}
             {(obj_param.update.class && !obj_param.update.var) && (
                 <>
@@ -358,7 +366,7 @@ export const csharp_func = (obj_param:{indent?:number,scope?:string[],class?:str
         <>
         {obj_param.scope && obj_param.scope.map((value,index:number)=>{
             return(
-                <span key={index} className="body text-blue-400">{value+blanks(1)}</span>
+                <span key={index} className="body text-vscode_vartype">{value+blanks(1)}</span>
             )
         })}
         {obj_param.class && <span className="body text-vscode_green">{obj_param.class+blanks(1)}</span>}
@@ -521,7 +529,7 @@ export const py_def_declare = (input:{name:string,params?:string[]}):JSX.Element
     return (
         <div className="textContainer">
             <p>
-                <span className="body text-blue-400">def{blanks(1)}</span>
+                <span className="body text-vscode_vartype">def{blanks(1)}</span>
                 <span className="body text-vscode_function">{input.name}</span>
                 <span className="body text-white">(
                     {input.params && input.params.map((value,index)=>{
@@ -541,7 +549,7 @@ export const py_def_body = (input:{return?:boolean,indent?:number,args:JSX.Eleme
         <div className="textContainer">
             <span>{blanks(input.indent ?? 0)}</span>
             <p>
-                <span className="body text-blue-400">return{blanks(1)}</span>
+                <span className="body text-vscode_vartype">return{blanks(1)}</span>
                 {input.args}
             </p>
         </div>
@@ -551,7 +559,7 @@ export const py_def_body = (input:{return?:boolean,indent?:number,args:JSX.Eleme
 export const go_package = (pkg:string):JSX.Element => {
     return (
         <div className="textContainer">
-            <span className="body text-blue-400">package</span>
+            <span className="body text-vscode_vartype">package</span>
             <span className="body text-vscode_ivory">{blanks(1)+pkg}</span>
         </div>
     )
@@ -561,7 +569,7 @@ export const go_import = (elements:{name:string,url?:string}[]):JSX.Element => {
     return (
         <>
         <div className="textContainer">
-            <span className="body text-blue-400">import{blanks(1)}</span>
+            <span className="body text-vscode_vartype">import{blanks(1)}</span>
             <span className="body text-vscode_ivory">(</span>
         </div>
         {elements.map((value,index:number)=>{
@@ -593,9 +601,9 @@ export const go_structure = (type:string,elements:{name:string,type:string,json:
     return(
         <>
         <div className="textContainer">
-            <span className="body text-blue-400">type</span>
+            <span className="body text-vscode_vartype">type</span>
             <span className="body text-vscode_green">{blanks(1)+type+blanks(1)}</span>
-            <span className="body text-blue-400">struct{blanks(1)}</span>
+            <span className="body text-vscode_vartype">struct{blanks(1)}</span>
             <span className="body text-vscode_ivory">&#123;</span>
         </div>
         <div className="flex flex-col pl-4 items-start w-full">
@@ -610,5 +618,95 @@ export const go_structure = (type:string,elements:{name:string,type:string,json:
         })}
         </div>
         </>
+    )
+}
+
+export const go_var_declare = (input:{name:string,type:string,mappedTag?:string}):JSX.Element => {
+    return(
+        <div className="textContainer">
+            <span className="body text-vscode_vartype">var{blanks(1)}</span>
+            <span className="body text-vscode_var">{input.name+blanks(1)}</span>
+            {input.mappedTag ? (
+                <>
+                    <span className="body text-vscode_vartype">map</span>
+                    <span className="body text-vscode_ivory">[<span className="text-vscode_green">{input.type}</span>]*{input.mappedTag.capitalize()}</span>
+                </>
+            ):(
+                <span className="body text-vscode_vartype">{input.type+blanks(1)}</span>
+            )}
+        </div>
+    )
+}
+
+export const go_func = (name:string,params:{name:string,type:string,isAddress?:boolean}[]):JSX.Element => {
+    return(
+        <div className="textContainer">
+            <span className="body text-vscode_vartype">func{blanks(1)}</span>
+            <span className="body text-vscode_function">{name}</span>
+            <span className="body text-vscode_ivory">({
+                params.map((value,index:number)=>{
+                    return(
+                        <span key={index} className="body text-vscode_ivory">{value.name+blanks(1)+`${value.isAddress ? '*':''}`+value.type}{index<params.length-1 && blanks(1)}</span>
+                    )
+                })
+            }) &#123;</span>
+        </div>
+    )
+}
+
+export const go_object = (object:string[],operator:string,complement:string,indent:number,method?:JSX.Element):JSX.Element => {
+    return(
+        <div className="textContainer">
+            <span>{blanks(indent)}</span>
+            {object.map((value,index:number)=>{
+                return(
+                    <>
+                        <span className="body text-vscode_var">{value}</span>
+                        {index<object.length-1 && <span className="text-vscode_ivory">,{blanks(1)}</span>}
+                    </>
+                )
+            })}
+            <span className="body text-vscode_ivory">{blanks(1)+operator+blanks(1)}</span>
+            {method? (
+                <>
+                    <span className="body text-vscode_ivory">{complement}.</span>
+                    {method}
+                </>
+            ):(
+                <span className="body text-vscode_ivory">{complement}</span>
+            )}
+        </div>
+    )
+}
+
+export const go_statement = (condition:string,indent:number,args:JSX.Element):JSX.Element => {
+    return(
+        <div className="textContainer">
+            <span>{blanks(indent)}</span>
+            <span className="body text-vscode_mauve">{condition+blanks(1)}</span>
+            {args}
+            <span className="body text-vscode_ivory">{blanks(1)}&#123;</span>
+        </div>
+    )
+}
+
+export const go_method = (object:string,indent:number,methods:{name:string,params?:string[]}[]):JSX.Element => {
+    return(
+        <div className="textContainer">
+            <span>{blanks(indent)}</span>
+            <span className="body text-vscode_ivory">{object}.</span>
+            {methods.map((value,index:number)=>{
+                return (
+                <span key={index} className="body">
+                    <span className="text-vscode_function">{value.name.capitalize()}</span>
+                    <span className="text-vscode_ivory">(</span>
+                    {value.params && value.params.map((_value,index:number)=>{
+                        return(
+                            <span key={index} className={`${_value.includes('@') ? 'text-vscode_string':'text-vscode_ivory'}`}>{_value.includes('@') ? (String.fromCharCode(34)+_value.substr(1)+String.fromCharCode(34)):_value}{value.params && index<value.params.length-1 && <span className="text-vscode_ivory">,{blanks(1)}</span>}</span>
+                    )})}
+                    <span className="text-vscode_ivory">)</span>
+                </span>
+            )})}
+        </div>
     )
 }

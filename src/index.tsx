@@ -12,6 +12,7 @@ declare global {
       commentBlock(): string;
       commentSharp(): string;
       comment_py(): string;
+      capitalize(): string;
       indentBy(size:number): string;
       splitByDash(): string[];
   }
@@ -35,6 +36,9 @@ String.prototype.indentBy = function (size:number):string {
 String.prototype.splitByDash = function ():string[] {
   return this.split('-');
 };
+String.prototype.capitalize = function() {
+  return this.charAt(0).toUpperCase() + this.slice(1);
+}
 
 ReactDOM.render(
   <React.StrictMode>
