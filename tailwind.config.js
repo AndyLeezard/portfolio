@@ -6,8 +6,11 @@ module.exports = {
     darkMode: false, // or 'media' or 'class'
     theme: {
       fontFamily: {
-          testing: [
+          vscode: [
             'Consolas',
+          ],
+          markdown: [
+            'Courier',
           ]
       },
       screens: {
@@ -66,6 +69,24 @@ module.exports = {
           },
           vscode_vartype: {
             DEFAULT: "#569CD6"
+          },
+          monokai_cyan: {
+            DEFAULT: "#20DAEF"
+          },
+          monokai_comment: {
+            DEFAULT: "#79745E"
+          },
+          monokai_crimson: {
+            DEFAULT: "#FF0075"
+          },
+          monokai_string: {
+            DEFAULT: "#E8DB61"
+          },
+          monokai_operator: {
+            DEFAULT: "#B5B5B6"
+          },
+          monokai_value: {
+            DEFAULT: "#B97EFF"
           }
         }
       }

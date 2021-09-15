@@ -1,7 +1,7 @@
 import React from 'react'
 import Env from '../../env.json';
 import { useHistory } from 'react-router-dom';
-import { py_importComponent, py_def_declare, py_def_body, blanks } from '../../global';
+import { py_importComponent, py_def_declare, py_def_body } from '../../library/py';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
     
 const Home_CsharpTSX: React.FC = () => {
@@ -20,7 +20,7 @@ const Home_CsharpTSX: React.FC = () => {
             <br/>
             <p className="body text-vscode_function">@render</p>
             {py_def_declare({name:'view_sections',params:['req']})}
-            <p className="body text-vscode_string">{blanks(4)+" renders the selected section ".comment_py()}</p>
+            <p className="body text-vscode_string">{String.fromCharCode(160).repeat(4)+" renders the selected section ".comment_py()}</p>
             {py_def_body({
                 return:true,
                 indent:4,

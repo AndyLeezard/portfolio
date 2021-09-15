@@ -1,7 +1,8 @@
 import React from 'react'
 import Env from '../../env.json';
 import { useHistory } from 'react-router-dom';
-import { csharp_using, csharp_namespace, csharp_class, csharp_object, csharp_func, csharp_statement, br, closure, conditionalIndent } from '../../global';
+import { csharp_using, csharp_namespace, csharp_class, csharp_object, csharp_func, csharp_statement } from '../../library/csharp';
+import { br, closure, conditionalIndent } from '../../global';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
     
 const Home_CsharpTSX: React.FC = () => {

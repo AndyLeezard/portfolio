@@ -11,7 +11,11 @@
 }
 
 .body {
-    @apply font-testing subpixel-antialiased text-xs md:text-base;
+    @apply font-vscode subpixel-antialiased text-xs md:text-base;
+}
+
+.body_markdown {
+    @apply font-markdown subpixel-antialiased text-xs md:text-base;
 }
   
 .textContainer {
@@ -23,11 +27,11 @@
 }
   
 .headerFont {
-    @apply font-testing font-bold subpixel-antialiased text-xl;
+    @apply font-vscode font-bold subpixel-antialiased text-xl;
 }
 
 .frontFont {
-    @apply font-testing font-bold subpixel-antialiased text-base inline;
+    @apply font-vscode font-bold subpixel-antialiased text-base inline;
 }
   
 .header {

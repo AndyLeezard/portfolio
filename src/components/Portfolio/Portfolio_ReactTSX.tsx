@@ -1,7 +1,7 @@
 import React from 'react'
 import Env from '../../env.json';
 import { useHistory } from 'react-router-dom';
-import { react_arrow, react_arrow_fin, react_component, react_importComponent } from '../../global';
+import { react_arrow, react_arrow_fin, react_component, react_importComponent } from '../../library/react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const Portfolio_ReactTSX: React.FC = () => {

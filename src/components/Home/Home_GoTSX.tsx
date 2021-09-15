@@ -2,7 +2,8 @@ import React from 'react'
 import Env from '../../env.json';
 import { useHistory } from 'react-router-dom';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { go_package, go_import, go_structure, br, closure, go_var_declare, go_func, go_object, conditionalIndent, go_statement, go_method } from '../../global';
+import { go_package, go_import, go_structure, go_var_declare, go_func, go_object, go_statement, go_method } from '../../library/go';
+import { br, closure, conditionalIndent } from '../../global';
 
 const Home_CsharpTSX: React.FC = () => {
     const history = useHistory();
@@ -26,9 +27,9 @@ const Home_CsharpTSX: React.FC = () => {
             ])}
             {closure('}',0)}
             {br}
-            {go_var_declare({name:'sections',type:'section',mappedTag:'section'})}
+            {go_var_declare({name:'sectionMap',type:'section',mappedTag:'section'})}
             {br}
-            {go_func('getUserInfoHandler',[
+            {go_func('getSectionHandler',[
                 {name:'w',type:'http.ResponseWriter'},
                 {name:'r',type:'http.Request',isAddress:true},
             ])}
@@ -56,12 +57,21 @@ const Home_CsharpTSX: React.FC = () => {
             {go_method('fmt',conditionalIndent(widthFallback,16,8),[{name:'Fprint',params:['w','err']}])}
             <span className="body text-vscode_mauve">{String.fromCharCode(160).repeat(conditionalIndent(widthFallback,8,4))}return</span>
             {closure('}',conditionalIndent(widthFallback,8,4))}
-            {go_object(['section','ok'],':=','sections[id]',conditionalIndent(widthFallback,8,4))}
+            {go_object(['section','ok'],':=','sectionMap[id]',conditionalIndent(widthFallback,8,4))}
             {go_statement('if',conditionalIndent(widthFallback,8,4),(<span className="body text-vscode_ivory">!ok</span>))}
             {go_method('w',conditionalIndent(widthFallback,16,8),[{name:'WriteHeader',params:['http.StatusOK']}])}
             {go_method('fmt',conditionalIndent(widthFallback,16,8),[{name:'Fprint',params:['w','@no section id:','id']}])}
             <span className="body text-vscode_mauve">{String.fromCharCode(160).repeat(conditionalIndent(widthFallback,8,4))}return</span>
             {closure('}',conditionalIndent(widthFallback,8,4))}
+            {go_method('w',conditionalIndent(widthFallback,8,4),[{name:'Header'},{name:'Add',params:['@Content-Type','@application/json']}])}
+            {go_method('w',conditionalIndent(widthFallback,8,4),[{name:'WriteHeader',params:['http.StatusOK']}])}
+            {go_object(['data','_'],':=','json',conditionalIndent(widthFallback,8,4),(
+                <>
+                    <span className="body text-vscode_function">Marshal</span>
+                    <span className="body text-vscode_ivory">(section)</span>
+                </>
+            ))}
+            {go_method('fmt',conditionalIndent(widthFallback,8,4),[{name:'Fprint',params:['w','string(data)']}])}
             {closure('}',0)}
         </div>
     )

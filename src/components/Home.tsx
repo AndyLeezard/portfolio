@@ -8,6 +8,7 @@ import Home_PythonTSX from './Home/Home_PythonTSX';
 import Home_GoTSX from './Home/Home_GoTSX';
 
 import { langs } from '../global';
+import Home_RTSX from './Home/Home_RTSX';
 
 interface LangProps {
     id:langs,
@@ -65,6 +66,7 @@ const Home: React.FC = () => {
             {crntLang===langs.CSHARP && <Home_CsharpTSX/>}
             {crntLang===langs.PYTHON && <Home_PythonTSX/>}
             {crntLang===langs.GO && <Home_GoTSX/>}
+            {crntLang===langs.R && <Home_RTSX/>}
         </div>
     </div>
     )
